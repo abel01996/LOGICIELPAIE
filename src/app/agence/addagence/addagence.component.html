@@ -1,0 +1,15 @@
+
+<mat-toolbar style="background-color: #673ab7; color : white;">
+    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <form class="form" [formGroup]="addAgenceForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom Agence</mat-label>
+        <input matInput placeholder="Sasir votre Agence" formControlName="nomAgence"/>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addAgenceForm.valid" (click)= "addAgence()" > {{actionBtn}}</button>
+      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+    </form>
+  </div>

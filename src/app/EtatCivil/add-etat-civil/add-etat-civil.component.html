@@ -1,0 +1,16 @@
+
+<mat-toolbar style="background-color: #673ab7; color : white;">
+    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <form class="form" [formGroup]="addModuleForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom Echelon</mat-label>
+        <input matInput placeholder="Sasir l'Etat Civil de l'employe" formControlName="etatCivil"/>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addModuleForm.valid" (click)= "addEtatCivil()" > {{actionBtn}}</button>
+      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+    </form>
+  </div>
+

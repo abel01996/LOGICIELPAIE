@@ -1,0 +1,46 @@
+<mat-drawer-container class="example-container" >
+  <mat-drawer mode="side" opened #drawer>
+    <mat-list role="list">
+      <mat-list-item role="listitem" routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <div>Accueil</div>
+      </mat-list-item>
+      <mat-list-item role="listitem" routerLink="/listemployer">
+        <mat-icon>view_headline</mat-icon>
+        <div>Liste Employe</div>
+      </mat-list-item>
+  
+      <mat-list-item role="listitem" routerLink="/listSituFami">
+        <mat-icon>people</mat-icon>
+        <div>Situation Famille</div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <mat-icon mat-button [matMenuTriggerFor]="menu">list</mat-icon>
+        <div><button mat-button [matMenuTriggerFor]="menu">Référentiel</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/listBanque"><mat-icon>account_balance</mat-icon>BANQUE</button>
+            <button mat-menu-item routerLink="/listAgence"><mat-icon> location_on</mat-icon>Agence</button>
+            <button mat-menu-item routerLink="/listClasse"><mat-icon> person_pin</mat-icon>Classe Employe</button>
+            <button mat-menu-item routerLink="/listhierarchie"><mat-icon>device_hub</mat-icon>Hierarchie</button>
+
+            <button mat-menu-item routerLink="/listCorps"><mat-icon> person_pin</mat-icon>Corps Employe</button>
+            <button mat-menu-item routerLink="/listEchelon"><mat-icon>equalizer</mat-icon>Echelon Employe</button>
+            <button mat-menu-item routerLink="/listModePaie"><mat-icon> monetization_on</mat-icon>Mode de payement</button>
+            <button mat-menu-item routerLink="/listPaieService"><mat-icon>party_mode</mat-icon>Service</button>
+            <button mat-menu-item routerLink="/listStatut"><mat-icon>timeline</mat-icon>Statut</button>
+            <button mat-menu-item routerLink="/listypepaie"><mat-icon> monetization_on</mat-icon>Type Payement</button>
+            <button mat-menu-item routerLink="/listypepaieRef"><mat-icon> monetization_on</mat-icon>Type Reference Payement</button>
+            <button mat-menu-item routerLink="/listEtatCivil"><mat-icon>people</mat-icon>Etat Civil</button>
+          </mat-menu>
+          </div>
+      </mat-list-item>
+    </mat-list>      
+  </mat-drawer>
+  <mat-drawer-content><app-toolbar (click)="drawer.toggle(); toggleButton()"></app-toolbar>
+   <div class="container">
+    <router-outlet></router-outlet>
+
+   </div>
+  </mat-drawer-content>
+  
+</mat-drawer-container>

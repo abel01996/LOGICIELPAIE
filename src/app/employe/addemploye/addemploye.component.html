@@ -1,0 +1,38 @@
+
+<mat-toolbar style="background-color: #673ab7; color : white;">
+    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <form class="form" [formGroup]="addEmployeForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Matricule</mat-label>
+        <input matInput placeholder="Sasir votre matricule" formControlName="matricule"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Sasir votre nom" formControlName="nom"/>
+      </mat-form-field> <br>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>prenom </mat-label>
+        <input matInput placeholder="Sasir votre prenom" formControlName="prenom"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>adresse</mat-label>
+        <input matInput placeholder="Sasir votre adresse" formControlName="adresse"/>
+      </mat-form-field> <br>
+    <mat-form-field appearance="outline">
+      <mat-label>DateNaissance</mat-label>
+          <input matInput [matDatepicker]= "picker" formControlName="dateNaissance" matInput placeholder="Sasir votre dateNaissance">
+        <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline">
+        <mat-label>CNI  </mat-label>
+        <input matInput placeholder="Sasir votre Numero CNI" formControlName="cni"/>
+      </mat-form-field> <br>
+      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addEmployeForm.valid" (click)= "addEmployer()" > {{actionBtn}}</button>
+      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+    </form>
+  </div>

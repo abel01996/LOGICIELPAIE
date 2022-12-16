@@ -1,0 +1,41 @@
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    color: blueviolet;
+   
+
+}
+#showcase{
+ background-image: url("/assets/image/paie1.jpg");
+  height:125vh ;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#showcase h1{
+    font-size: 35px;
+   
+
+}
+#showcase p{
+    font-size: 20px;
+
+}
+#showcase .button{
+    font-size: 20px;
+    text-decoration: none;
+    color: blueviolet;
+    border: solid 1px blueviolet;
+    width: 230px;
+    text-align: center;
+    border-radius: 20px;
+}
+#showcase .button:hover{
+
+    background: blueviolet;
+    color: aliceblue;
+}

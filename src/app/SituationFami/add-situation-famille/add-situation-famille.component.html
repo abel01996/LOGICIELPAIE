@@ -1,0 +1,44 @@
+
+<mat-toolbar style="background-color: #673ab7; color : white;">
+    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <form class="form" [formGroup]="addEmployeForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nbre Epouse</mat-label>
+        <input matInput placeholder="Sasir votre nbrEpouse" formControlName="nbrEpouse"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Nbre Enfant</mat-label>
+        <input matInput placeholder="Sasir votre nbrEnfant" formControlName="nbrEnfant"/>
+      </mat-form-field> <br>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Nbre Part Fiscal</mat-label>
+        <input matInput placeholder="Sasir votre nbrPartFical" formControlName="nbrPartFical"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Nbre Part Impot</mat-label>
+        <input matInput placeholder="Sasir votre nbrPartImpot" formControlName="nbrPartImpot"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Nobre D'enfant Prestataire</mat-label>
+        <input matInput placeholder="Sasir votre nbrDenfantPrest" formControlName="nbrDenfantPrest"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Total Enfant</mat-label>
+        <input matInput placeholder="Sasir votre nbre totalEnfant" formControlName="totalEnfant"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Jour de Base</mat-label>
+        <input matInput placeholder="Sasir votre jourBase" formControlName="jourBase"/>
+      </mat-form-field> <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Nbre jour Presence</mat-label>
+        <input matInput placeholder="Sasir votre nbreJourPresence " formControlName="nbreJourPresence"/>
+      </mat-form-field> <br>
+      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addEmployeForm.valid" (click)= "addSituaFamille()" > {{actionBtn}}</button>
+      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+    </form>
+  </div>

@@ -1,0 +1,30 @@
+.fill-remaining-space {
+    flex: 1 1 auto;
+    
+  }
+  
+  .container {
+    padding: 10px;
+  
+  }
+  .ng-star-inserted{
+    top: 10px;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+  
+.pull-right{
+ 
+  border: none;
+  border-radius: 20%;
+  font-size: 14px;
+  font-style: normal;
+  
+} 
+.pull{
+  border: none;
+  border-radius: 20%;
+  font-size: 14px;
+  font-style: normal;
+} 
