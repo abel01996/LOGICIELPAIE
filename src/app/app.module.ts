@@ -58,6 +58,11 @@ import { ListEtatCivilComponent } from './EtatCivil/list-etat-civil/list-etat-ci
 import { AddSituationFamilleComponent } from './SituationFami/add-situation-famille/add-situation-famille.component';
 import { ListSituationFamiComponent } from './SituationFami/list-situation-fami/list-situation-fami.component';
 import { SituaFamilleService } from './service/SituaFamilleService';
+import { DirectionComponent } from './direction/direction/direction.component';
+import { ListDirectionComponent } from './direction/list-direction/list-direction.component';
+import { DepartementComponent } from './departement/departement/departement.component';
+import { ListDepartementComponent } from './departement/list-departement/list-departement.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -95,6 +100,10 @@ import { SituaFamilleService } from './service/SituaFamilleService';
     ListEtatCivilComponent,
     AddSituationFamilleComponent,
     ListSituationFamiComponent,
+    DirectionComponent,
+    ListDirectionComponent,
+    DepartementComponent,
+    ListDepartementComponent,
  
    
   ],
@@ -110,6 +119,7 @@ import { SituaFamilleService } from './service/SituaFamilleService';
     MatSortModule,
     MatPaginatorModule,
     AppRoutingModule,
+    MatSelectModule,
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,

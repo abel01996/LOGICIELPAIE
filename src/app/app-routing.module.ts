@@ -7,6 +7,8 @@ import { ListBanqueComponent } from './banque/list-banque/list-banque.component'
 import { AddClasseComponent } from './classe/add-classe/add-classe.component';
 import { ListClasseComponent } from './classe/list-classe/list-classe.component';
 import { ListCorpsComponent } from './corps/list-corps/list-corps.component';
+import { ListDepartementComponent } from './departement/list-departement/list-departement.component';
+import { ListDirectionComponent } from './direction/list-direction/list-direction.component';
 import { ListEchelonComponent } from './Echelon/list-echelon/list-echelon.component';
 import { AddemployeComponent } from './employe/addemploye/addemploye.component';
 import { ListemployeComponent } from './employe/listemploye/listemploye.component';
@@ -44,6 +46,9 @@ const routes: Routes = [
   {path:'listhierarchie' , component:ListHierartypeComponent},
   {path:'listEtatCivil' , component:ListEtatCivilComponent},
   {path:'listSituFami' , component:ListSituationFamiComponent},
+  {path:'listDepartement' , component:ListDepartementComponent},
+  {path:'listDirection' , component:ListDirectionComponent},
+ 
  
  
  

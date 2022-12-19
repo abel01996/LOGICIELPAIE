@@ -13,4 +13,6 @@ statutEmploye?:string;
 typePaie?:string;
 typePaieRef?:string;
 etatCivil?:string;
+nomDepartement?:string;
+nomDirection?:string;
 }

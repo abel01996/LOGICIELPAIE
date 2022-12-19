@@ -270,5 +270,48 @@ public deleteEtatCivil(id:number):Observable<void>{
     return this.http.delete<any>(`${this.apiServiceUrl}/deleteEtatCivil/`+id);
 }
 
+///////////////////////////////////////Service Departement/////////////////////////////////////////////
+
+public getDepartement():Observable<ModelPaie[]>{
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listDepartement`);
+}
+
+public postDepartement(Compte: ModelPaie[]){
+    return this.http.post(`${this.apiServiceUrl}/saveDepartement`, Compte);
+}
+ public getIdDepartement(id:number){
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
+ }
+    
+public putDepartement(data:any,id:number):Observable<ModelPaie[]>{
+    return this.http.put<any>(`${this.apiServiceUrl}/updateDepartement/`+id,data);
+}
+
+public deleteDepartement(id:number):Observable<void>{ 
+    return this.http.delete<any>(`${this.apiServiceUrl}/deleteDepartement/`+id);
+}
+
+///////////////////////////////////////Service Direction/////////////////////////////////////////////
+
+public getDirection():Observable<ModelPaie[]>{
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listDirection`);
+}
+
+public postDirection(Compte: ModelPaie[]){
+    return this.http.post(`${this.apiServiceUrl}/saveDirection`, Compte);
+}
+ public getIdDirection(id:number){
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
+ }
+    
+public putDirection(data:any,id:number):Observable<ModelPaie[]>{
+    return this.http.put<any>(`${this.apiServiceUrl}/updateDirection/`+id,data);
+}
+
+public deleteDirection(id:number):Observable<void>{ 
+    return this.http.delete<any>(`${this.apiServiceUrl}/deleteDirection/`+id);
+}
+
+
 
 }

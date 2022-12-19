@@ -32,6 +32,7 @@ export class AddCorpsComponent implements OnInit {
     if(this.editData){
       this.actiontitle='Modifier Corps'
       this.actionBtn =' Modifier Corps';
+      this.addModuleForm.controls['code'].setValue(this.editData.code);
       this.addModuleForm.controls['nomCorps'].setValue(this.editData.nomCorps);
     }
   }
