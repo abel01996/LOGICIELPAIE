@@ -3,19 +3,24 @@
     <mat-list role="list">
       <mat-list-item role="listitem" routerLink="/home">
         <mat-icon>home</mat-icon>
-        <div>Accueil</div>
+        <div style="color: #fff;">Accueil</div>
       </mat-list-item>
-      <mat-list-item role="listitem" routerLink="/listemployer">
-        <mat-icon>view_headline</mat-icon>
-        <div><button mat-button>Liste Employe</button></div>
-      </mat-list-item>
+     
 
-      <!--<button mat-button [matMenuTriggerFor]="belowMenu"><mat-icon> bubble_chart</mat-icon>Organigramme</button>
+    <button mat-button [matMenuTriggerFor]="belowMenu"><mat-icon> bubble_chart</mat-icon>Organigramme</button>
        <mat-menu #belowMenu="matMenu" yPosition="below">
         <button mat-menu-item routerLink="/listDirection"><mat-icon>device_hub</mat-icon>Direction Generale</button>
-        <button mat-menu-item routerLink="/listPaieService"><mat-icon>party_mode</mat-icon>Service</button>
         <button mat-menu-item routerLink="/listDepartement"><mat-icon> merge_type</mat-icon>Departement</button>
-      </mat-menu>-->
+        <button mat-menu-item routerLink="/listPaieService"><mat-icon>party_mode</mat-icon>Service</button>
+      </mat-menu>
+      <mat-list-item role="listitem" routerLink="/listemployer">
+        <mat-icon>view_headline</mat-icon>
+        <div><button mat-button>Liste Agent</button></div>
+      </mat-list-item>
+      <mat-list-item role="listitem" routerLink="/listContrat">
+        <mat-icon>speaker_notes</mat-icon>
+        <div><button mat-button>Liste Employer</button></div>
+      </mat-list-item>
 
       <mat-list-item role="listitem">
         <mat-icon mat-button [matMenuTriggerFor]="menu">list</mat-icon>
@@ -24,7 +29,13 @@
             <button mat-menu-item routerLink="/listBanque"><mat-icon>account_balance</mat-icon>BANQUE</button>
             <button mat-menu-item routerLink="/listAgence"><mat-icon> location_on</mat-icon>Agence</button>
             <button mat-menu-item routerLink="/listClasse"><mat-icon> person_pin</mat-icon>Classe Employe</button>
-
+            <button mat-menu-item routerLink="/listtypeContrat"><mat-icon> person_pin</mat-icon>TypeContrat</button>
+            <!-- <button mat-menu-item routerLink="/addFichePaie"><mat-icon> person_pin</mat-icon>addFichePaie</button>
+       -->
+           <button mat-menu-item routerLink="/listEpouse"><mat-icon>group</mat-icon>Epoux(se)</button>
+           <button mat-menu-item routerLink="/listEnfant"><mat-icon>person</mat-icon>Enfant</button>
+          
+           
             <button mat-menu-item routerLink="/listhierarchie"><mat-icon>device_hub</mat-icon>Hierarchie</button>
             <button mat-menu-item routerLink="/listCorps"><mat-icon> person_pin</mat-icon>Corps Employe</button>
             <button mat-menu-item routerLink="/listEchelon"><mat-icon>equalizer</mat-icon>Echelon Employe</button>
@@ -32,14 +43,14 @@
               payement</button>
             <button mat-menu-item routerLink="/listStatut"><mat-icon>timeline</mat-icon>Statut</button>
             <button mat-menu-item routerLink="/listypepaie"><mat-icon> monetization_on</mat-icon>Type Payement</button>
-            <button mat-menu-item routerLink="/listSituFami"><mat-icon>people</mat-icon>Situation Famille</button>
-
+            
             <button mat-menu-item routerLink="/listypepaieRef"><mat-icon> monetization_on</mat-icon>Type Reference
               Payement</button>
             <button mat-menu-item routerLink="/listEtatCivil"><mat-icon>people</mat-icon>Etat Civil</button>
           </mat-menu>
         </div>
       </mat-list-item>
+      
     </mat-list>
   </mat-drawer>
   <mat-drawer-content><app-toolbar (click)="drawer.toggle(); toggleButton()"></app-toolbar>

@@ -12,7 +12,9 @@ import { ModelPaie } from 'src/model/ModelPaie';
 })
 export class AddClasseComponent implements OnInit {
 
-  classe!: ModelPaie[];
+   classe!: ModelPaie[];
+   Statut!:ModelPaie[];
+   Corps!: ModelPaie[];
   addModuleForm!: FormGroup;
   actionBtn: string ='Ajouter Classe' 
   actiontitle:string ='Ajouter Classe'
@@ -23,18 +25,23 @@ export class AddClasseComponent implements OnInit {
     private dialog : MatDialogRef<AddBanqueComponent>) { }
 
   ngOnInit(): void {
-
+    this.OnSelect();
     this.relaodData();
     this.addModuleForm = this.fb.group({
       nomClasse: ['', Validators.required],
-      correspondance: ['', Validators.required]
+      statut_id: ['', Validators.required],
+      correspondance: ['', Validators.required],
+
+     
     });
 
     if(this.editData){
       this.actiontitle='Modifier Classe'
       this.actionBtn =' Modifier Classe';
       this.addModuleForm.controls['nomClasse'].setValue(this.editData.nomClasse);
+      this.addModuleForm.controls['statut_id'].setValue(this.editData.statut.id);
       this.addModuleForm.controls['correspondance'].setValue(this.editData.correspondance);
+     
     }
   }
   relaodData(){
@@ -45,11 +52,26 @@ export class AddClasseComponent implements OnInit {
         console.log(err);
       })
   }
+  OnSelect(){
+    this.Service.getStatut()
+    .subscribe(data=>{
+      this.Statut = data;
+    },err=>{
+      console.log(err);
+    })
+  }
+  
+ 
   addClasse(){
     if(!this.editData){
       if(this.addModuleForm.valid){
-
-        this.Service.postClasse(this.addModuleForm.value)
+  
+        const classe = { 
+          nomClasse: this.addModuleForm.value['nomClasse'],
+          correspondance: this.addModuleForm.value['correspondance'] 
+            };
+         const idStatut = this.addModuleForm.value['statut_id'];
+              this.Service.postClasse(classe,idStatut)
         .subscribe({
           next:(res)=>{
       alert('nom Classe ajouter avec succees')
@@ -67,7 +89,15 @@ export class AddClasseComponent implements OnInit {
     }
   }
   updateClasse(){
-    this.Service.putClasse(this.addModuleForm.value,this.editData.id)
+    const classe = { 
+      nomClasse: this.addModuleForm.value['nomClasse'],
+      correspondance: this.addModuleForm.value['correspondance'],
+       statut:{
+        id: this.addModuleForm.value['statut_id']
+      }
+        };
+        // console.log("classe =",classe)
+    this.Service.putClasse(classe,this.editData.id)
     .subscribe({
       next:(res)=>{
 

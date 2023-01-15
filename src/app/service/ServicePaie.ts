@@ -15,10 +15,16 @@ import { ModelPaie } from 'src/model/ModelPaie';
 
 export class ServicePaie{
 
+   
+
   private apiServiceUrl= environment.apiBaseUrl +"api/logicielPaie/v1";
 
     constructor(private http: HttpClient) {}
+    // rootLevelNodes: string[] = ['Direction'];
 
+    // initialData(): DynamicFlatNode[] {
+    //     return this.rootLevelNodes.map(name => new DynamicFlatNode(name, 0, true));
+    // }
     public getBanque():Observable<ModelPaie[]>{
         return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listBanque`);
     }
@@ -44,8 +50,8 @@ export class ServicePaie{
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listClasse`);
         }
         
-        public postClasse(Classe: ModelPaie[]){
-            return this.http.post(`${this.apiServiceUrl}/saveClasse`, Classe);
+        public postClasse(Classe:any, id:number){
+            return this.http.post(`${this.apiServiceUrl}/saveClasse/`+id,Classe);
         }
          public getIdClasse(id:number){
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
@@ -85,15 +91,15 @@ export class ServicePaie{
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listCorps`);
         }
         
-        public postCorps(Compte: ModelPaie[]){
-            return this.http.post(`${this.apiServiceUrl}/saveCorps`, Compte);
+        public postCorps(Corps:any,id:number){
+            return this.http.post(`${this.apiServiceUrl}/saveCorps/`+id, Corps);
         }
          public getIdCorps(id:number){
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
          }
             
-        public putCorps(data:any,id:number):Observable<ModelPaie[]>{
-            return this.http.put<any>(`${this.apiServiceUrl}/updateCorps/`+id,data);
+        public putCorps(Corps:any,id:number):Observable<ModelPaie[]>{
+            return this.http.put<any>(`${this.apiServiceUrl}/updateCorps/`+id,Corps);
         }
     
         public deleteCorps(id:number):Observable<void>{ 
@@ -106,15 +112,15 @@ export class ServicePaie{
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listEchelon`);
         }
         
-        public postEchelon(Compte: ModelPaie[]){
-            return this.http.post(`${this.apiServiceUrl}/saveEchelon`, Compte);
+        public postEchelon(echelon:any, id:number){
+            return this.http.post(`${this.apiServiceUrl}/saveEchelon/`+id, echelon);
         }
          public getIdEchelon(id:number){
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
          }
             
-        public putEchelon(data:any,id:number):Observable<ModelPaie[]>{
-            return this.http.put<any>(`${this.apiServiceUrl}/updateEchelon/`+id,data);
+        public putEchelon(echelon:any ,id:number):Observable<ModelPaie[]>{
+            return this.http.put<any>(`${this.apiServiceUrl}/updateEchelon/`+id, echelon);
         }
     
         public deleteEchelon(id:number):Observable<void>{ 
@@ -149,8 +155,8 @@ export class ServicePaie{
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listService`);
         }
         
-        public postService(Compte: ModelPaie[]){
-            return this.http.post(`${this.apiServiceUrl}/saveService`, Compte);
+        public postService(Serv:any,id:number){
+            return this.http.post(`${this.apiServiceUrl}/saveService/`+id, Serv);
         }
          public getIdService(id:number){
             return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
@@ -276,8 +282,8 @@ public getDepartement():Observable<ModelPaie[]>{
     return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listDepartement`);
 }
 
-public postDepartement(Compte: ModelPaie[]){
-    return this.http.post(`${this.apiServiceUrl}/saveDepartement`, Compte);
+public postDepartement(departement: any,id:number){
+    return this.http.post(`${this.apiServiceUrl}/saveDep/`+id, departement);
 }
  public getIdDepartement(id:number){
     return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
@@ -312,6 +318,33 @@ public deleteDirection(id:number):Observable<void>{
     return this.http.delete<any>(`${this.apiServiceUrl}/deleteDirection/`+id);
 }
 
+///////////////////////////////////////Service TypeContrat /////////////////////////////////////////////
 
+public getTypeContrat():Observable<ModelPaie[]>{
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listTypeContrat`);
+}
+
+public postTypeContrat(TypeContrat:ModelPaie[]){
+    return this.http.post(`${this.apiServiceUrl}/saveTypeContrat`, TypeContrat);
+}
+ public getIdTypeContratn(id:number){
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
+ }
+    
+public putTypeContrat(data:any,id:number):Observable<ModelPaie[]>{
+    return this.http.put<any>(`${this.apiServiceUrl}/updateTypeContrat/`+id,data);
+}
+
+public deleteTypeContrat(id:number):Observable<void>{ 
+    return this.http.delete<any>(`${this.apiServiceUrl}/deleteTypeContrat/`+id);
+}
+
+//////ALLEmployerData///
+public getlistContratsByEmp(matricule:string){
+    return this.http.get(`${this.apiServiceUrl}/listContratsByEmp/${matricule}`);
+}
+getMatricule(matricule: string) {
+    return this.http.get(`${this.apiServiceUrl}/matricule`);
+  }
 
 }

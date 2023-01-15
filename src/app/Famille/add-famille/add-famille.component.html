@@ -1,0 +1,57 @@
+<mat-toolbar style="background-color: #673ab7; color : white;">
+    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <form class="form" [formGroup]="addModuleForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom Epouse</mat-label>
+        <input matInput placeholder="Sasir nom epouse" formControlName="nom"/>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline">
+        <mat-label>prenom</mat-label>
+        <input matInput placeholder="Sasir prenom epouse" formControlName="prenom"/>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline">
+        <mat-label>DateNaissance</mat-label>
+            <input matInput [matDatepicker]= "picker" formControlName="dateNaissance" matInput placeholder="Sasir votre dateNaissance">
+          <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field><br>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>profession</mat-label>
+            <input matInput placeholder="Sasir profession" formControlName="profession"/>
+          </mat-form-field><br>
+          <mat-form-field appearance="outline">
+            <mat-label>telephone</mat-label>
+            <input matInput placeholder="Sasir le numero telephone" formControlName="tel"/>
+          </mat-form-field><br>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Date Etat Civil</mat-label>
+                <input matInput [matDatepicker]= "datepicker" formControlName="mariage" matInput placeholder="Sasir votre date fin">
+              <mat-datepicker-toggle matSuffix [for]= "datepicker"></mat-datepicker-toggle>
+              <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>matricule</mat-label>
+              <input matInput placeholder="Sasir le numero telephone" [disabled]="false" formControlName="employe_id"/>
+            </mat-form-field><br> 
+       <!-- <mat-form-field appearance="outline">
+            <mat-label>Select Matricule Epoux</mat-label>
+            <mat-select  formControlName="employe_id">
+              <mat-option  value="" disabled>Selection Matricule Epoux</mat-option>
+              <mat-option *ngFor="let epouse of Employe;" [value]="epouse.id">
+                {{epouse.matricule}}
+              </mat-option>
+            </mat-select>
+            <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+            <!-- </mat-form-field><br>
+            --> 
+
+      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addModuleForm.valid" (click)= "addFamille()" > {{actionBtn}}</button>
+      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+    </form>
+  </div>
+

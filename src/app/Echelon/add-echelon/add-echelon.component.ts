@@ -13,6 +13,7 @@ import { ModelPaie } from 'src/model/ModelPaie';
 export class AddEchelonComponent implements OnInit {
 
   Echelon!: ModelPaie[];
+  Hierarchie!: ModelPaie[];
   addModuleForm!: FormGroup;
   actionBtn: string ='Ajouter Echelon' 
   actiontitle:string ='Ajouter Echelon'
@@ -23,18 +24,20 @@ export class AddEchelonComponent implements OnInit {
     private dialog : MatDialogRef<AddEchelonComponent>) { }
 
   ngOnInit(): void {
-
+    this. SelectData();
     this.relaodData();
     this.addModuleForm = this.fb.group({
       nomEchelon: ['', Validators.required],
-      correspondance: ['', Validators.required]
+      correspondances: ['', Validators.required],
+      hierarchie_id: ['', Validators.required]
     });
 
     if(this.editData){
       this.actiontitle='Modifier Echelon'
       this.actionBtn =' Modifier Echelon';
       this.addModuleForm.controls['nomEchelon'].setValue(this.editData.nomEchelon);
-      this.addModuleForm.controls['correspondance'].setValue(this.editData.correspondance);
+      this.addModuleForm.controls['hierarchie_id'].setValue(this.editData.hierarchie.id);
+      this.addModuleForm.controls['correspondances'].setValue(this.editData.correspondances);
     
     }
   }
@@ -46,11 +49,24 @@ export class AddEchelonComponent implements OnInit {
         console.log(err);
       })
   }
+ SelectData(){
+    this.Service.getHierarchie()
+      .subscribe(data=>{
+        this.Hierarchie = data;
+      },err=>{
+        console.log(err);
+      })
+  }
   addEchelon(){
     if(!this.editData){
       if(this.addModuleForm.valid){
-
-        this.Service.postEchelon(this.addModuleForm.value)
+        const echelon = { 
+          nomEchelon: this.addModuleForm.value['nomEchelon'],
+          correspondances: this.addModuleForm.value['correspondances'] 
+            };
+         const idHierrchie = this.addModuleForm.value['hierarchie_id'];
+        
+        this.Service.postEchelon(echelon,idHierrchie)
         .subscribe({
           next:(res)=>{
       alert('nom Echelon ajouter avec succees')
@@ -68,7 +84,15 @@ export class AddEchelonComponent implements OnInit {
     }
   }
   updateEchelon(){
-    this.Service.putEchelon(this.addModuleForm.value,this.editData.id)
+
+    const echelon = { 
+      nomEchelon: this.addModuleForm.value['nomEchelon'],
+      correspondances: this.addModuleForm.value['correspondances'],
+      hierarchie: {
+        id:this.addModuleForm.value['hierarchie_id']
+      }
+    };
+    this.Service.putEchelon(echelon,this.editData.id)
     .subscribe({
       next:(res)=>{
 

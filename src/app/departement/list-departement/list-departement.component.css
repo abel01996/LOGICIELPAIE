@@ -4,6 +4,7 @@
   
   table {
     width: 100%;
+    background-color: #cdc2e0; 
   }
   td, th {
     width: 25%;
@@ -52,6 +53,7 @@
     height: 110px;
     margin-top: 20px;
     margin-bottom: 20px;
+    background-color: #cdc2e0; 
   }
   
   
@@ -64,7 +66,6 @@
     font-size: 20px;
   }
   mat-card button{
-  
   width: 180px;
   height: 40px;
   border: none;

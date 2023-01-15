@@ -1,38 +1,125 @@
 
-<mat-toolbar style="background-color: #673ab7; color : white;">
-    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
-  </mat-toolbar>
-  
-  <div class="container">
-    <form class="form" [formGroup]="addEmployeForm">
-      <mat-form-field appearance="outline">
-        <mat-label>Matricule</mat-label>
-        <input matInput placeholder="Sasir votre matricule" formControlName="matricule"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Nom</mat-label>
-        <input matInput placeholder="Sasir votre nom" formControlName="nom"/>
-      </mat-form-field> <br>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>prenom </mat-label>
-        <input matInput placeholder="Sasir votre prenom" formControlName="prenom"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>adresse</mat-label>
-        <input matInput placeholder="Sasir votre adresse" formControlName="adresse"/>
-      </mat-form-field> <br>
-    <mat-form-field appearance="outline">
-      <mat-label>DateNaissance</mat-label>
-          <input matInput [matDatepicker]= "picker" formControlName="dateNaissance" matInput placeholder="Sasir votre dateNaissance">
-        <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field><br>
-      <mat-form-field appearance="outline">
-        <mat-label>CNI  </mat-label>
-        <input matInput placeholder="Sasir votre Numero CNI" formControlName="cni"/>
-      </mat-form-field> <br>
-      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addEmployeForm.valid" (click)= "addEmployer()" > {{actionBtn}}</button>
-      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
-    </form>
-  </div>
+ 
+<div class="containerfluid">
+      <!-- <button mat-raised-button (click)="isOptional = !isOptional">
+        {{!isOptional ? 'Enable optional steps' : 'Disable optional steps'}}
+      </button> -->
+      
+      <mat-stepper linear #stepper>
+        <mat-step [stepControl]="addEmployeForm">
+          <form [formGroup]="addEmployeForm">
+            <ng-template matStepLabel>Parametre Personel</ng-template>
+            
+              <div class="container">
+                <mat-toolbar style="background-color: #673ab7; color : white; width: 50%;">
+                  <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+                </mat-toolbar>  
+                <!-- <form class="form" [formGroup]="addEmployeForm"> -->
+                  <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+                    <mat-label>Matricule</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Ex. 3606456"formControlName="matricule">
+                    <!-- <mat-hint align="end">{{input.value.length}}/10</mat-hint> -->
+                  </mat-form-field><br>
+            
+                <mat-form-field appearance="outline">
+                  <mat-label>nom</mat-label>
+                  <input matInput placeholder="Sasir votre nom" formControlName="nom"/>
+                </mat-form-field><br>
+              
+                  <mat-form-field appearance="outline">
+                    <mat-label>prenom </mat-label>
+                    <input matInput placeholder="Sasir votre prenom" formControlName="prenom"/>
+                  </mat-form-field> <br>
+                  <mat-form-field appearance="outline">
+                    <mat-label>adresse</mat-label>
+                    <input matInput placeholder="Sasir votre adresse" formControlName="adresse"/>
+                  </mat-form-field> <br>
+               
+              </div>
+       
+                           
+            <div>
+              <button mat-raised-button color="primary"  class="pull1" mat-button matStepperNext>Suivant</button>
+              <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right1" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+         
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="addEmployeForm1" [optional]="isOptional">
+          <form [formGroup]="addEmployeForm1">
+            <ng-template matStepLabel>Parametre Personel</ng-template>
+        
+            <div class="containerdeux ">
+              <mat-toolbar style="background-color: #673ab7; color : white; width: 50%; text-align: center;">
+                <span class="fill-remaining-space" align="center">Ajouter Agent</span>
+              </mat-toolbar>
+              <mat-form-field appearance="outline">
+                <mat-label>DateNaissance</mat-label>
+                    <input matInput [matDatepicker]= "picker" formControlName="dateNaissance" matInput placeholder="Sasir votre dateNaissance">
+                  <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field><br>
+               
+                <mat-form-field appearance="outline">
+                  <mat-label>CNI</mat-label>
+                  <input matInput placeholder="Sasir votre Numero CNI" formControlName="cni"/>
+                </mat-form-field> <br>
+              <mat-form-field appearance="outline">
+                <mat-label>Select votre EtatCivil</mat-label>
+                <mat-select  formControlName="etatCivil_id">
+                  <mat-option  value="" disabled>Selection EtatCivil</mat-option>
+                  <mat-option *ngFor="let etatCivil of EtatCivil;" [value]="etatCivil.id">
+                    {{etatCivil.etatCivil}}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+              </mat-form-field><br>
+                <!-- <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+                  <mat-label>Nombre epouse</mat-label>
+                  <input matInput #input maxlength="10" placeholder="Ex. 3606456"formControlName="nbrEpouse">
+                  <!-- <mat-hint align="end">{{input.value.length}}/10</mat-hint> -->
+                <!-- </mat-form-field><br>
+              <mat-form-field appearance="outline">
+                <mat-label> nbrEnfant</mat-label>
+                <input matInput placeholder="Sasir votre nom" formControlName="nbrEnfant"/>
+              </mat-form-field><br> --> --> -->
+                <!-- <mat-form-field appearance="outline">
+                  <mat-label>nbrPartImpot</mat-label>
+                  <input matInput placeholder="Sasir votre adresse" formControlName="nbrPartImpot"/>
+                </mat-form-field> <br>
+                <mat-form-field appearance="outline">
+                  <mat-label>nbrDenfantPrest</mat-label>
+                  <input matInput placeholder="Sasir votre adresse" formControlName="nbrDenfantPrest"/>
+                </mat-form-field><br> -->
+                <!-- <mat-form-field appearance="outline">
+                  <mat-label> totalEnfant</mat-label>
+                  <input matInput placeholder="Sasir votre adresse" formControlName="totalEnfant"/>
+                </mat-form-field><br>
+               
+                 -->
+                </div>
+            <div>
+              <button  style="margin-top:30px;"  mat-flat-button color="accent" mat-button matStepperPrevious >Precedent</button>
+              <button mat-raised-button color="primary" class="pull" type="submit"[disabled]="!addEmployeForm.valid" [disabled]="!addEmployeForm1.valid"(click)= "addEmployer()" > {{actionBtn}}</button>
+              <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+              <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+            </div>
+          </form>
+        </mat-step>
+        <!-- <mat-step>
+          <!-- <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p> -->
+         
+        <!-- </mat-step> --> 
+      </mat-stepper>
+    </div>
+      
+
+      <!--situation familialle-->
+     
+    
+      <!--fin situation familiale-->
+    
+      
+          
+<!-- </div>   -->

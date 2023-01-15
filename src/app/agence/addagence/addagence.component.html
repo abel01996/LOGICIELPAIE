@@ -9,6 +9,16 @@
         <mat-label>Nom Agence</mat-label>
         <input matInput placeholder="Sasir votre Agence" formControlName="nomAgence"/>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Select me</mat-label>
+        <mat-select  formControlName="banque_id">
+          <mat-option  value="" disabled>Selection Banque</mat-option>
+          <mat-option *ngFor="let banque of Banque;" [value]="banque.id">
+            {{banque.nomBanque}}
+          </mat-option>
+        </mat-select>
+        <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+      </mat-form-field>
       <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addAgenceForm.valid" (click)= "addAgence()" > {{actionBtn}}</button>
       <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
     </form>

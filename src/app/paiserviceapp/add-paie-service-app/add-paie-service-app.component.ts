@@ -12,6 +12,7 @@ import { ModelPaie } from 'src/model/ModelPaie';
 export class AddPaieServiceAppComponent implements OnInit {
 
   Serviceapp!: ModelPaie[];
+  Departement!:ModelPaie[];
   addModuleForm!: FormGroup;
   actionBtn: string ='Ajouter Service' 
   actiontitle:string ='Ajouter Service'
@@ -22,16 +23,18 @@ export class AddPaieServiceAppComponent implements OnInit {
     private dialog : MatDialogRef<AddPaieServiceAppComponent>) { }
 
   ngOnInit(): void {
-
+     this. onSelect();
     this.relaodData();
     this.addModuleForm = this.fb.group({
-      nomService: ['', Validators.required]
+      nomService: ['', Validators.required],
+      departement_id: ['', Validators.required]
     });
 
     if(this.editData){
       this.actiontitle='Modifier Service'
       this.actionBtn =' Modifier Service';
       this.addModuleForm.controls['nomService'].setValue(this.editData.nomService);
+      this.addModuleForm.controls['departement_id'].setValue(this.editData.departement.id);
     }
   }
   relaodData(){
@@ -42,11 +45,20 @@ export class AddPaieServiceAppComponent implements OnInit {
         console.log(err);
       })
   }
+  onSelect(){
+    this.Service.getDepartement()
+      .subscribe(data=>{
+        this.Departement = data;
+      },err=>{
+        console.log(err);
+      })}
   addService(){
     if(!this.editData){
       if(this.addModuleForm.valid){
+    const Serv ={nomService:this.addModuleForm.value['nomService']};
+    const idDepartement =this.addModuleForm.value['departement_id'];
 
-        this.Service.postService(this.addModuleForm.value)
+        this.Service.postService(Serv,idDepartement)
         .subscribe({
           next:(res)=>{
       alert('nom Service ajouter avec succees')
@@ -64,6 +76,9 @@ export class AddPaieServiceAppComponent implements OnInit {
     }
   }
   updateService(){
+    // const Services = this.addModuleForm.value[this.editData.nomService];
+    // const idDepartement =this.addModuleForm.value[this.editData.departement_id];
+
     this.Service.putService(this.addModuleForm.value,this.editData.id)
     .subscribe({
       next:(res)=>{

@@ -3,6 +3,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
     color: blueviolet;
+
    
 
 }
@@ -13,17 +14,22 @@ body{
   background-size: cover;
   display: flex;
   flex-direction: column;
+  flex: 100%;
   justify-content: center;
   align-items: center;
+
 }
 #showcase h1{
-    font-size: 35px; 
-   
+    font-size: 45px; 
+    font-style: normal;
+    margin-left: 130px;
+    box-shadow: inset
+    
 
 }
 #showcase p{
     font-size: 20px;
-
+    
 }
 #showcase .button{
     font-size: 20px;
@@ -33,6 +39,7 @@ body{
     width: 230px;
     text-align: center;
     border-radius: 20px;
+    margin-left: 130px;
 }
 #showcase .button:hover{
 

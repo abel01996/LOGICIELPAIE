@@ -1,0 +1,109 @@
+
+     <div><h1> <span>Parametres:Epoux(se)</span> </h1></div> 
+
+     <mat-card>
+       
+       <mat-form-field appearance="fill">
+         <mat-label>Filter</mat-label>
+         <input matInput (keyup) ="applyFilter($event)" placeholder="Saisir le nom">
+         <mat-icon matSuffix>search</mat-icon>
+       </mat-form-field>
+       <button mat-raised-button color="primary" class="pull-right mt-3" (click)="openDialog()">
+         <i class="fa fa-user"></i> AJOUTER Epouse </button>
+     </mat-card>
+     
+     <div class="container">
+       <div class="mat-elevation-z8"></div>
+       <table  class="table table-bordered  table-striped table-hover" mat-table [dataSource] ="dataSource" matSort >
+       <!-- <ng-container matColumnDef="contrat_id">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header>Matricule</th>
+           <td mat-cell *matCellDef="let element"> {{element.contrat.matricule}}</td>
+         </ng-container>
+   
+      -->
+      <!-- Progress Column -->
+      <ng-container matColumnDef="nomEpouse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+        <td mat-cell *matCellDef="let element">{{element.nom}}</td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="prenomEpouse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Prenom</th>
+        <td mat-cell *matCellDef="let element">{{element.prenom}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="adresse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Adresse</th>
+        <td  mat-cell *matCellDef="let element"> {{element.adresse}}</td>
+      </ng-container>
+  
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="dateNaissanceEpouse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DateNaissance</th>
+        <td mat-cell *matCellDef="let element"> {{element.dateNaissance|date}}</td>
+      </ng-container>
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="profession">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Profession</th>
+        <td mat-cell *matCellDef="let element"> {{element.profession}}</td>
+      </ng-container>
+     
+      <ng-container matColumnDef="tel">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Telephone</th>
+        <td  mat-cell *matCellDef="let element"> {{element?.tel}} </td>
+  
+      </ng-container>
+
+      <ng-container matColumnDef="mariage">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DateEtatCivil</th>
+        <td  mat-cell *matCellDef="let element"> {{element?.mariage|date}} </td>
+  
+      </ng-container>
+
+      <ng-container matColumnDef="employe_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Matricule Epoux(se)</th>
+        <td mat-cell *matCellDef="let element" disabled>{{element?.employe?.matricule}}</td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="employe_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Matricule Epoux</th>
+        <td mat-cell *matCellDef="let element">{{element.employe.nom}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="employe_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Matricule Epoux</th>
+        <td mat-cell *matCellDef="let element">{{element.employe.prenom}}</td>
+      </ng-container> -->
+  
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" yposition="above">
+            <mat-icon class="mat-18">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editEpouse(element)">
+              <mat-icon mat-fab color="primary">edit</mat-icon> Modifier Info Epouse
+            </button>
+            <button mat-menu-item (click)="deleteEpouse(element.id)">
+              <mat-icon mat-fab color="warn">delete</mat-icon> Supprimer Epouse
+            </button>
+          </mat-menu>
+          
+          <!-- <button mat-icon-button (click)="editEpouse(row)" color="primary"> 
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn"> 
+            <mat-icon>delete</mat-icon>
+          </button> -->
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns:displayedColumns; "></tr>
+    </table>
+    <mat-paginator style=" background-color: #cdc2e0;" [length]="200" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+  
+ 

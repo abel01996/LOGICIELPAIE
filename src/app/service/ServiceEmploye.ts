@@ -22,7 +22,7 @@ export class ServiceEmployer{
         return this.http.get<Employe[]>(`${this.apiServiceUrl}/listEmployer`);
     }
     
-    public postEmployer(employer: Employe){
+    public postEmployer(employer:any){
         return this.http.post(`${this.apiServiceUrl}/saveEmployer`, employer);
     }
      public getIdEmployer(id:number){

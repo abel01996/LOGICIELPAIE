@@ -26,9 +26,9 @@ export class ListHierartypeComponent implements OnInit {
   
  constructor( private Service:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getHierarchie(){
   
   this.Service.getHierarchie().subscribe({

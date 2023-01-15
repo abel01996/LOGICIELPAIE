@@ -25,9 +25,9 @@ export class ListClasseComponent implements OnInit {
   
  constructor( private Service:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getClasse(){
   
   this.Service.getClasse().subscribe({
@@ -47,7 +47,7 @@ public getClasse(){
  editClasse(element: ServicePaie){
   this.dialog.open(AddClasseComponent,{
     width:'35%',
-    height: '80%',
+    height: '90%',
     data: element
   }).afterClosed().subscribe(val =>{
     if(val==='mise a jour Classe'){
@@ -64,7 +64,7 @@ public getClasse(){
     openDialog() {
       const dialogRef = this.dialog.open(AddClasseComponent, {
         width: '700px',
-        height:'80%'
+        height:'90%'
       }).afterClosed().subscribe(val =>{
            if(val==='Ajouter Classe'){
             this.getClasse();

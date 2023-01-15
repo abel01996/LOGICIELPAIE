@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServicePaie } from 'src/app/service/ServicePaie';
+import { Employe } from 'src/model/Employe';
 import { ModelPaie } from 'src/model/ModelPaie';
 
 @Component({
@@ -11,7 +12,7 @@ import { ModelPaie } from 'src/model/ModelPaie';
 })
 export class AddEtatCivilComponent implements OnInit {
 
-  EtatCivil!: ModelPaie[];
+  EtatCivil!: Employe[];
   addModuleForm!: FormGroup;
   actionBtn: string ='Ajouter EtatCivil' 
   actiontitle:string ='Ajouter EtatCivil'

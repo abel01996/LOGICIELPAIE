@@ -8,6 +8,10 @@
   
   }
   .ng-star-inserted{
+    background-color: #cdc2e0; 
+    background-size: 100%;
+  }
+  .ng-star-inserted{
     top: 10px;
   }
   .mat-form-field {

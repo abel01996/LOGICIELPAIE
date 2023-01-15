@@ -1,0 +1,258 @@
+
+<form class="form" [formGroup]="addModuleForm">
+        
+      </form>
+
+      <mat-stepper linear #stepper>
+        <mat-step [stepControl]="addModuleForm">
+          <form [formGroup]="addModuleForm">
+            <ng-template matStepLabel>Parametre Contrat</ng-template>
+            <div  class="example-container">
+              <div>
+               <mat-toolbar style="background-color: #673ab7; color : white; width: 55%; margin-top: 30px;">
+                  <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+              </mat-toolbar>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-label>Select votre matricule</mat-label>
+                <mat-select  formControlName="employe_id">
+                  <mat-option  value="" disabled>Selection le matricule</mat-option>
+                  <mat-option *ngFor="let employe of Employe;" [value]="employe.id">
+                    {{employe.matricule}}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+              </mat-form-field><br>
+             
+            <mat-form-field appearance="fill">
+              <mat-label>Corps Employer</mat-label>
+              <mat-select formControlName="corp_id">
+                <mat-option  value="" disabled>Selectionne Corps</mat-option>
+                <mat-option *ngFor="let corps of Corps;" [value]="corps.id">
+                  {{corps.nomCorps}}
+                </mat-option> 
+              </mat-select>
+              <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+            </mat-form-field></div><br>
+            <div class="container1">
+            <mat-form-field appearance="fill">
+              <mat-label>Echelon</mat-label>
+              <mat-select formControlName="echelon_id">
+                <mat-option  value="" disabled>Selectionne Echelon</mat-option>
+                <mat-option *ngFor="let echelon of Echelon;" [value]="echelon.id">
+                  {{echelon.nomEchelon}}
+                </mat-option> 
+              </mat-select>
+              <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+            </mat-form-field>
+            </div>
+            <div class="container">
+             <mat-form-field appearance="fill">
+              <mat-label>Hierarchie Employer</mat-label>
+              <mat-select placeholder="votre hierarchie" formControlName="hierarchie_id">
+                <mat-option  value="" disabled>Selectionne Hierarchie</mat-option>
+                <mat-option *ngFor="let hierarchie of Hierarchie;" [value]="hierarchie.id">
+                  {{hierarchie.nomHierarchie}}
+                </mat-option> 
+              </mat-select>
+              <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+            </mat-form-field>
+          </div>
+         
+          <div class="container-left">
+              <mat-form-field appearance="fill" >
+                  <mat-label>Date Embouche</mat-label>
+                      <input matInput [matDatepicker]= "picker" formControlName="embouche" matInput placeholder="Sasir votre date d'Embouche">
+                    <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+               </div>
+               <div class="mb-56">
+                <mat-form-field appearance="fill">
+                  <mat-label>Date Fin</mat-label>
+                      <input matInput [matDatepicker]= "datepicker" formControlName="dateFin" matInput placeholder="Sasir votre date fin">
+                    <mat-datepicker-toggle matSuffix [for]= "datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker></mat-datepicker>
+                  </mat-form-field>
+                  
+               </div>
+                  <div class="container-left-type">
+                  <div class="ml-3">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Classe Employer</mat-label>
+                      <mat-select placeholder="votre Statut" formControlName="classe_id">
+                        <mat-option  value="" disabled>Selectionne Classe</mat-option>
+                        <mat-option *ngFor="let classe of Classe;" [value]="classe.id">
+                          {{classe.nomClasse}}
+                        </mat-option> 
+                      </mat-select>
+                      <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                    </mat-form-field>
+                  </div>
+                  <div class="mr-3">
+                    <mat-form-field appearance="fill">
+                      <mat-label>TypeContrat</mat-label>
+                      <mat-select placeholder="votre typeContrat" formControlName="typeContrat_id">
+                        <mat-option  value="" disabled>Selectionne TypeContrat</mat-option>
+                        <mat-option *ngFor="let typeContrat of TypeContrat;" [value]="typeContrat.id">
+                          {{typeContrat.libelle}}
+                        </mat-option> 
+                      </mat-select>
+                      <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                    </mat-form-field>
+
+                      </div>
+                  </div>
+                  <div class="mb-521">
+                    <mat-form-field appearance="fill">
+                     <mat-label>Statut Employer</mat-label>
+                     <mat-select placeholder="votre Statut" formControlName="statut_id">
+                       <mat-option  value="" disabled>Selectionne Statut</mat-option>
+                       <mat-option *ngFor="let statut of Statut;" [value]="statut.id">
+                         {{statut.code}}
+                       </mat-option> 
+                     </mat-select>
+                     <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                   </mat-form-field>
+                 </div>
+
+            <div>
+              <button mat-raised-button color="primary" mat-button matStepperNext  class="pull1">Suivant</button>
+              <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right1" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+         
+            </div>
+          </form>
+        </mat-step>
+        <!---formulaire II-->
+  
+        <mat-step [stepControl]="addModuleForm1" [optional]="isOptional">
+          <form [formGroup]="addModuleForm1">
+            <ng-template matStepLabel>Parametre Salarial</ng-template>
+            <div  class="example-container">
+              <div>
+               <mat-toolbar style="background-color: #673ab7; color : white; width: 55%; margin-top: 30px;">
+                  <span class="fill-remaining-space" align="center">Parametre Salarial</span>
+              </mat-toolbar>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-label>Select Agence</mat-label>
+                <mat-select  formControlName="agence_id">
+                  <mat-option  value="" disabled>Selection l'Agence</mat-option>
+                  <mat-option *ngFor="let agence of Agence;" [value]="agence.id">
+                    {{agence.nomAgence}}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+              </mat-form-field><br>
+             
+            <mat-form-field appearance="fill">
+              <mat-label>mode Paie</mat-label>
+              <mat-select formControlName="modePaie_id">
+                <mat-option  value="" disabled>Selectionne votre mode de Payement</mat-option>
+                <mat-option *ngFor="let modePaie of ModePaie;" [value]="modePaie.id">
+                  {{modePaie.modePaie}}
+                </mat-option> 
+              </mat-select>
+              <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+            </mat-form-field></div><br>
+            <div class="container">
+              <mat-form-field appearance="fill">
+                <mat-label>type Payement</mat-label>
+                <mat-select placeholder="votre typePaie" formControlName="typePaie_id">
+                  <mat-option  value="" disabled>Selectionne votre payement</mat-option>
+                  <mat-option *ngFor="let typepaie of TypePaie;" [value]="typepaie.id">
+                    {{typepaie.typePaie}}
+                  </mat-option> 
+                </mat-select>
+                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Payement Reference</mat-label>
+                <mat-select placeholder="votre typePaieRef" formControlName="typePaieRef_id">
+                  <mat-option  value="" disabled>Selectionne votre Reference payement</mat-option>
+                  <mat-option *ngFor="let typePaieRef of TypePaieRef;" [value]="typePaieRef.id">
+                    {{typePaieRef.typePaieRef}}
+                  </mat-option> 
+                </mat-select>
+                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+              </mat-form-field>
+          </div>
+          <div class="left">
+          <div class="container-left12">
+            <mat-form-field appearance="outline">
+              <mat-label>Salaire Base</mat-label>
+              <input matInput placeholder="Sasir le Salaire de Base" formControlName="salaireBase"/>
+            </mat-form-field><br>
+              </div> 
+          <div class="container-left1">
+            <mat-form-field appearance="outline">
+              <mat-label>Jour Base</mat-label>
+              <input matInput placeholder="Sasir le jour de Base" formControlName="jourBase"/>
+            </mat-form-field><br>
+              </div> 
+              <div class="container-left2">
+                <mat-form-field appearance="outline">
+                  <mat-label>Jour Presence</mat-label>
+                  <input matInput placeholder="Sasir votre Numero CNI" formControlName="nbreJourPresence"/>
+                </mat-form-field><br>
+               </div> 
+               <div class="mb-5">
+                <mat-form-field appearance="outline">
+                  <mat-label>Numero Compte</mat-label>
+                  <input matInput placeholder="Sasir votre numero compte" formControlName="numCompte"/>
+                </mat-form-field><br>
+               </div>
+               <div class="mb-51">
+                <mat-form-field appearance="outline">
+                  <mat-label>nbrPartFical</mat-label>
+                  <input matInput placeholder="Sasir votre nbrPartFical" formControlName="nbrPartFical"/>
+                </mat-form-field> 
+               </div>
+               <div class="mb-52">
+                <mat-form-field appearance="outline">
+                  <mat-label>nbrPartImpot</mat-label>
+                  <input matInput placeholder="Sasir votre nbrPartImpot" formControlName="nbrPartImpot"/>
+                </mat-form-field> 
+               </div>
+               <div class="mb-53">
+                <mat-form-field appearance="outline">
+                  <mat-label>nbrDenfantPrest</mat-label>
+                  <input matInput placeholder="Sasir votre nbrDenfantPrest" formControlName="nbrDenfantPrest"/>
+                </mat-form-field>
+               </div>
+                  <!-- <div class="container-left-type">
+                  <div class="ml-3">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Classe Employer</mat-label>
+                      <mat-select placeholder="votre Statut" formControlName="classe_id">
+                        <mat-option  value="" disabled>Selectionne Classe</mat-option>
+                        <mat-option *ngFor="let classe of Classe;" [value]="classe.id">
+                          {{classe.nomClasse}}
+                        </mat-option> 
+                      </mat-select>
+                       <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                    <!-- </mat-form-field>
+                  </div>
+                  <div class="mr-3">
+                    <mat-form-field appearance="fill">
+                      <mat-label>TypeContrat</mat-label>
+                      <mat-select placeholder="votre typeContrat" formControlName="typeContrat_id">
+                        <mat-option  value="" disabled>Selectionne TypeContrat</mat-option>
+                        <mat-option *ngFor="let typeContrat of TypeContrat;" [value]="typeContrat.id">
+                          {{typeContrat.libelle}}
+                        </mat-option> 
+                      </mat-select>
+                      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                    <!-- </mat-form-field>
+                      </div>
+                  </div> --> 
+                </div>
+            <div class="container-button">
+              <button mat-flat-button color="accent" mat-button matStepperPrevious>Precedent</button>
+                <button  mat-raised-button color="primary" type="submit" [disabled]="!addModuleForm.valid"[disabled]="!addModuleForm1.valid"   (click)="addContrat()" class="pull">{{actionBtn}}</button>
+                <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit"  (click)="closeDialog()" mat-dialog-close>Fermer</button>   
+             
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>

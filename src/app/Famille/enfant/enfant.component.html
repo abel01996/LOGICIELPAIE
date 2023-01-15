@@ -1,0 +1,46 @@
+<mat-toolbar style="background-color: #673ab7; color : white;">
+    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
+  </mat-toolbar>
+  
+  <div class="container">
+    <form class="form" [formGroup]="addModuleForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Sasir nom de l'enfant" formControlName="nom"/>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline">
+        <mat-label>prenom</mat-label>
+        <input matInput placeholder="Sasir prenom  de l'enfant" formControlName="prenom"/>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline">
+        <mat-label>DateNaissance</mat-label>
+            <input matInput [matDatepicker]= "picker" formControlName="dateNaissance" matInput placeholder="Sasir votre dateNaissance">
+          <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field><br>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>lieu de Naissance</mat-label>
+            <input matInput placeholder="Saisir lieu de Naissance " formControlName="lieuNaiss"/>
+          </mat-form-field><br>
+          <mat-form-field appearance="outline">
+            <mat-label>numero Extrait</mat-label>
+            <input matInput placeholder="Sasir le numero registre" formControlName="numeroRegistre"/>
+          </mat-form-field><br>
+          <mat-form-field appearance="outline">
+            <mat-label>Select Matricule Epoux</mat-label>
+            <mat-select  formControlName="employe_id">
+              <mat-option  value="" disabled>Selection Matricule Parent</mat-option>
+              <mat-option *ngFor="let epouse of Employe;" [value]="epouse.id">
+                {{epouse.matricule}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+          </mat-form-field><br>
+          
+
+      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addModuleForm.valid" (click)= "addFamille()" > {{actionBtn}}</button>
+      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
+    </form>
+  </div>
+

@@ -6,17 +6,18 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServicePaie } from 'src/app/service/ServicePaie';
 import { ModelPaie } from 'src/model/ModelPaie';
-import { AddNumeroCompteComponent } from '../add-numero-compte/add-numero-compte.component';
+import { TypeContratComponent } from '../type-contrat/type-contrat.component';
 
 @Component({
-  selector: 'app-list-num-compte',
-  templateUrl: './list-num-compte.component.html',
-  styleUrls: ['./list-num-compte.component.css']
+  selector: 'app-list-type-contrat',
+  templateUrl: './list-type-contrat.component.html',
+  styleUrls: ['./list-type-contrat.component.css']
 })
-export class ListNumCompteComponent implements OnInit {
-  NumCompte!: ModelPaie[];
-  addNumCompteForm!: FormGroup;
-  displayedColumns =['numCompte','action'];
+export class ListTypeContratComponent implements OnInit {
+
+ TypeContrat!: ModelPaie[];
+  addDirectionForm!: FormGroup;
+  displayedColumns =['code','libelle','action'];
  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -24,12 +25,12 @@ export class ListNumCompteComponent implements OnInit {
   
  constructor( private Service:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
-public getNumCompte(){
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
+public getTypeContrat(){
   
-  this.Service.getNumCompte().subscribe({
+  this.Service.getTypeContrat().subscribe({
 
    next:(res)=>{
      this.dataSource = new MatTableDataSource(res);
@@ -37,46 +38,46 @@ public getNumCompte(){
      this.dataSource.sort = this.sort;
    },
    error:(err)=>{
-     alert("cette NumCompte n'existe pas")
+     alert("cette TypeContrat n'existe pas")
    }
   })
  
  
  }
- editNumCompte(element: ServicePaie){
-  this.dialog.open(AddNumeroCompteComponent,{
+ editTypeContrat(element: ServicePaie){
+  this.dialog.open(TypeContratComponent,{
     width:'35%',
     height: '50%',
     data: element
   }).afterClosed().subscribe(val =>{
-    if(val==='mise a jour NumCompte'){
-     this.getNumCompte();
+    if(val==='mise a jour TypeContrat'){
+     this.getTypeContrat();
    }
  })
   }
 
   ngOnInit(): void {
-    this.getNumCompte();
+    this.getTypeContrat();
   
     }
  
     openDialog() {
-      const dialogRef = this.dialog.open(AddNumeroCompteComponent, {
+      const dialogRef = this.dialog.open(TypeContratComponent, {
         width: '700px',
         height:'50%'
       }).afterClosed().subscribe(val =>{
-           if(val==='Ajouter NumCompte'){
-            this.getNumCompte();
+           if(val==='Ajouter TypeContrat'){
+            this.getTypeContrat();
           }
         })
     }
-    deleteNumCompte(id:number) {
+    deleteTypeContrat(id:number) {
 
-      this.Service.deleteNumCompte(id)
+      this.Service.deleteTypeContrat(id)
       .subscribe({
         next:(res)=>{
-          alert('NumCompte supprimer avec succee')
-          this.getNumCompte();
+          alert('TypeContrat supprimer avec succee')
+          this.getTypeContrat();
         },
         error:()=>{
           alert('erreur lors de le suppression')

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListNumCompteComponent } from './list-num-compte.component';
+import { TypeContratComponent } from './type-contrat.component';
 
-describe('ListNumCompteComponent', () => {
-  let component: ListNumCompteComponent;
-  let fixture: ComponentFixture<ListNumCompteComponent>;
+describe('TypeContratComponent', () => {
+  let component: TypeContratComponent;
+  let fixture: ComponentFixture<TypeContratComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListNumCompteComponent ]
+      declarations: [ TypeContratComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListNumCompteComponent);
+    fixture = TestBed.createComponent(TypeContratComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

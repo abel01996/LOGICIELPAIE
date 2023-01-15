@@ -9,6 +9,31 @@
         <mat-label>Nom Departement</mat-label>
         <input matInput placeholder="Sasir la Departement de l'employe" formControlName="nomDepartement"/>
       </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+        <mat-label>Select me</mat-label>
+        <mat-select  formControlName="direction_id">
+          <mat-option  value="" disabled>Selection la direction</mat-option>
+          <mat-option *ngFor="let direction of Direction;" [value]="direction.id">
+            {{direction.nomDirection }}
+          </mat-option>
+        </mat-select>
+        <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+      </mat-form-field><br>
+       
+      <!-- <mat-select class="form-control" [formControl]="directCtrl" placeholder="choisir client"
+      (selectionChange)="onChangeDirection($event)" fullWidth id="sini_souscripteur" #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="directFilterCtrl" placeholderLabel="recherche..."
+          noEntriesFoundLabel="aucune corespondance">
+        </ngx-mat-select-search>
+      </mat-option>
+      <mat-option value="{{direction.nomDirection}" *ngFor="let direction of filteredDirection | async">
+        {{direction.nomDirection}} : {{direction.nomDirection}} -->
+       
+      <!-- </mat-option>
+      </mat-select> -->
+   
       <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addModuleForm.valid" (click)= "addDepartement()" > {{actionBtn}}</button>
       <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
     </form>

@@ -13,7 +13,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { HomeComponent } from './home/home.component';
 import { AddemployeComponent } from './employe/addemploye/addemploye.component';
 import { ListemployeComponent } from './employe/listemploye/listemploye.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {  MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,8 +35,6 @@ import { AddagenceComponent } from './agence/addagence/addagence.component';
 import { ListagenceComponent } from './agence/listagence/listagence.component';
 import { AddClasseComponent } from './classe/add-classe/add-classe.component';
 import { ListClasseComponent } from './classe/list-classe/list-classe.component';
-import { AddNumeroCompteComponent } from './numeroCompte/add-numero-compte/add-numero-compte.component';
-import { ListNumCompteComponent } from './numeroCompte/list-num-compte/list-num-compte.component';
 import { AddCorpsComponent } from './corps/add-corps/add-corps.component';
 import { ListCorpsComponent } from './corps/list-corps/list-corps.component';
 import { AddEchelonComponent } from './Echelon/add-echelon/add-echelon.component';
@@ -63,6 +61,22 @@ import { ListDirectionComponent } from './direction/list-direction/list-directio
 import { DepartementComponent } from './departement/departement/departement.component';
 import { ListDepartementComponent } from './departement/list-departement/list-departement.component';
 import {MatSelectModule} from '@angular/material/select';
+import { ContratComponent } from './contrat/contrat/contrat.component';
+import { TypeContratComponent } from './contrat/type-contrat/type-contrat.component';
+import { ListTypeContratComponent } from './contrat/list-type-contrat/list-type-contrat.component';
+import { ListContratComponent } from './contrat/list-contrat/list-contrat.component';
+import { ContratService } from './service/ContratService';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
+import { AddFichePaieComponent } from './fichePaie/add-fiche-paie/add-fiche-paie.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { AddFamilleComponent } from './Famille/add-famille/add-famille.component';
+import { ListFamilleComponent } from './Famille/list-famille/list-famille.component';
+import { ServiceFamille } from './service/ServiceFamile';
+import { EnfantComponent } from './Famille/enfant/enfant.component';
+import { ListenfantComponent } from './Famille/listenfant/listenfant.component';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -78,8 +92,6 @@ import {MatSelectModule} from '@angular/material/select';
     ListagenceComponent,
     AddClasseComponent,
     ListClasseComponent,
-    AddNumeroCompteComponent,
-    ListNumCompteComponent,
     AddCorpsComponent,
     ListCorpsComponent,
     AddEchelonComponent,
@@ -104,6 +116,15 @@ import {MatSelectModule} from '@angular/material/select';
     ListDirectionComponent,
     DepartementComponent,
     ListDepartementComponent,
+    ContratComponent,
+    TypeContratComponent,
+    ListTypeContratComponent,
+    ListContratComponent,
+    AddFichePaieComponent,
+    AddFamilleComponent,
+    ListFamilleComponent,
+    EnfantComponent,
+    ListenfantComponent,
  
    
   ],
@@ -112,14 +133,19 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatAutocompleteModule,
     MatCardModule,
     MatMenuModule,
+    MatTabsModule,
+    MatStepperModule,
     MatTableModule,
     MatInputModule,
     MatSortModule,
+    MatTreeModule,
     MatPaginatorModule,
     AppRoutingModule,
     MatSelectModule,
+    MatCheckboxModule,
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
@@ -131,7 +157,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatDatepickerModule
   ],
-  providers: [ServiceEmployer,ServicePaie,SituaFamilleService,
+
+  providers: [ServiceEmployer,ServicePaie,SituaFamilleService,ContratService,ServiceFamille,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]

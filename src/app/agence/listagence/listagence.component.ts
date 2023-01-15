@@ -18,7 +18,7 @@ export class ListagenceComponent implements OnInit {
 
   Agence!: Agence[];
   addAgenceForm!: FormGroup;
-  displayedColumns =['nomAgence','action'];
+  displayedColumns =['nomAgence','banque_id','action'];
  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -26,9 +26,9 @@ export class ListagenceComponent implements OnInit {
   
  constructor( private ServiceAgence:ServiceAgence,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getAgence(){
   
   this.ServiceAgence.getAgence().subscribe({

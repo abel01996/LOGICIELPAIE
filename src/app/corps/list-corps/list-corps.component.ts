@@ -24,9 +24,9 @@ export class ListCorpsComponent implements OnInit {
   
  constructor( private Service:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getCorps(){
   
   this.Service.getCorps().subscribe({

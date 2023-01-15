@@ -3,7 +3,18 @@
     height: 800px;
     margin: 10px;
     border: 1px solid #555;
+    
   }
+  .mat-drawer {
+    color: #fff;
+    background-color: #673ab7;
+ 
+  }
+  .mat-drawer button{
+    color: #fff;
+ 
+  }
+  .mat-drawer mat-icon{ color: #fff;}
   .fa-solid{
     width: 50px;
     background-color: blueviolet;

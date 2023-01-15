@@ -19,6 +19,10 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Service</th>
         <td mat-cell *matCellDef="let element">{{element.nomService}}</td>
       </ng-container>
+      <ng-container matColumnDef="departement_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Departement</th>
+        <td mat-cell *matCellDef="let element">{{element.departement.nomDepartement}}</td>
+      </ng-container>
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
@@ -46,7 +50,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns:displayedColumns; "></tr>
     </table>
-    <mat-paginator [length]="200" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator style=" background-color: #cdc2e0; " [length]="200" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
   
 

@@ -17,7 +17,7 @@ export class ListEchelonComponent implements OnInit {
 
   Echelon!: ModelPaie[];
   addEchelonForm!: FormGroup;
-  displayedColumns =['nomEchelon','correspondance','action'];
+  displayedColumns =['nomEchelon','correspondances','action'];
  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,9 +25,9 @@ export class ListEchelonComponent implements OnInit {
   
  constructor( private Service:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getEchelon(){
   
   this.Service.getEchelon().subscribe({
@@ -47,7 +47,7 @@ public getEchelon(){
  editEchelon(element: ServicePaie){
   this.dialog.open(AddEchelonComponent,{
     width:'35%',
-    height: '70%',
+    height: '90%',
     data: element
   }).afterClosed().subscribe(val =>{
     if(val==='mise a jour Echelon'){
@@ -64,7 +64,7 @@ public getEchelon(){
     openDialog() {
       const dialogRef = this.dialog.open(AddEchelonComponent, {
         width: '700px',
-        height:'70%'
+        height:'90%'
       }).afterClosed().subscribe(val =>{
            if(val==='Ajouter Echelon'){
             this.getEchelon();

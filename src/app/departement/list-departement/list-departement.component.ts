@@ -17,7 +17,7 @@ export class ListDepartementComponent implements OnInit {
 
   Departement!: ModelPaie[];
   addDepartementForm!: FormGroup;
-  displayedColumns =['nomDepartement','action'];
+  displayedColumns =['nomDepartement','direction_id','action'];
  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,14 +25,15 @@ export class ListDepartementComponent implements OnInit {
   
  constructor( private Service:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getDepartement(){
   
   this.Service.getDepartement().subscribe({
 
    next:(res)=>{
+    console.log('Liste departement', res)
      this.dataSource = new MatTableDataSource(res);
      this.dataSource.paginator = this.paginator; 
      this.dataSource.sort = this.sort;
@@ -47,11 +48,13 @@ public getDepartement(){
  editDepartement(element: ServicePaie){
   this.dialog.open(DepartementComponent,{
     width:'35%',
-    height: '50%',
+    height: '60%',
     data: element
-  }).afterClosed().subscribe(val =>{
+  })
+  .afterClosed().subscribe(val =>{
+    this.getDepartement();
     if(val==='mise a jour Departement'){
-     this.getDepartement();
+
    }
  })
   }
@@ -64,8 +67,9 @@ public getDepartement(){
     openDialog() {
       const dialogRef = this.dialog.open(DepartementComponent, {
         width: '700px',
-        height:'50%'
-      }).afterClosed().subscribe(val =>{
+        height:'60%'
+      })
+      .afterClosed().subscribe(val =>{
            if(val==='Ajouter Departement'){
             this.getDepartement();
           }

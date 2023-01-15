@@ -14,12 +14,13 @@ export class ServiceAgence{
 
   private apiServiceUrl= environment.apiBaseUrl +"api/logicielPaie/v1";
 
-    constructor(private http: HttpClient) {} public getAgence():Observable<Agence[]>{
+    constructor(private http: HttpClient) {}
+     public getAgence():Observable<Agence[]>{
         return this.http.get<Agence[]>(`${this.apiServiceUrl}/listAgence`);
     }
     
-    public postAgence(Agence: Agence){
-        return this.http.post(`${this.apiServiceUrl}/saveAgence`, Agence);
+    public postAgence(Agence: any,id:number){
+        return this.http.post(`${this.apiServiceUrl}/saveAgence/`+id , Agence);
     }
      public getIdAgence(id:number){
         return this.http.get<Agence[]>(`${this.apiServiceUrl}`+'/'+id);

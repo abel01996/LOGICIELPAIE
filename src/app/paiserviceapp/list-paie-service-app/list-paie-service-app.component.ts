@@ -16,7 +16,7 @@ import { AddPaieServiceAppComponent } from '../add-paie-service-app/add-paie-ser
 export class ListPaieServiceAppComponent implements OnInit {
   Serviceapp!: ModelPaie[];
   addServiceForm!: FormGroup;
-  displayedColumns =['nomService','action'];
+  displayedColumns =['nomService','departement_id','action'];
  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -24,9 +24,9 @@ export class ListPaieServiceAppComponent implements OnInit {
   
  constructor( private Service:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getService(){
   
   this.Service.getService().subscribe({

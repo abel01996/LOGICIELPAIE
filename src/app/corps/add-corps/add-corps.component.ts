@@ -11,6 +11,7 @@ import { ModelPaie } from 'src/model/ModelPaie';
   styleUrls: ['./add-corps.component.css']
 })
 export class AddCorpsComponent implements OnInit {
+  Echelon!:ModelPaie[];
   Corps!: ModelPaie[];
   addModuleForm!: FormGroup;
   actionBtn: string ='Ajouter Corps' 
@@ -22,11 +23,12 @@ export class AddCorpsComponent implements OnInit {
     private dialog : MatDialogRef<AddBanqueComponent>) { }
 
   ngOnInit(): void {
-
+    this.relaodEchelon();
     this.relaodData();
     this.addModuleForm = this.fb.group({
       code: ['', Validators.nullValidator],
-      nomCorps: ['', Validators.required]
+      nomCorps: ['', Validators.required],
+      echelon_id:['', Validators.required]
     });
 
     if(this.editData){
@@ -34,6 +36,7 @@ export class AddCorpsComponent implements OnInit {
       this.actionBtn =' Modifier Corps';
       this.addModuleForm.controls['code'].setValue(this.editData.code);
       this.addModuleForm.controls['nomCorps'].setValue(this.editData.nomCorps);
+      this.addModuleForm.controls['echelon_id'].setValue(this.editData.echelon.id);
     }
   }
   relaodData(){
@@ -44,11 +47,26 @@ export class AddCorpsComponent implements OnInit {
         console.log(err);
       })
   }
+
+  relaodEchelon(){
+    this.Service.getEchelon()
+      .subscribe(data=>{
+        this.Echelon = data;
+      },err=>{
+        console.log(err);
+      })
+  }
   addCorps(){
     if(!this.editData){
       if(this.addModuleForm.valid){
+        const Corps ={
+               code: this.addModuleForm.value['code'],
+               nomCorps:this.addModuleForm.value['nomCorps'] };
+         const idEchelon= this.addModuleForm.value['echelon_id'];
 
-        this.Service.postCorps(this.addModuleForm.value)
+            //  console.log("Corp = ", Corps, "idEchelon =", idEchelon)
+
+        this.Service.postCorps(Corps,idEchelon)
         .subscribe({
           next:(res)=>{
       alert('nom Corps ajouter avec succees')
@@ -66,7 +84,16 @@ export class AddCorpsComponent implements OnInit {
     }
   }
   updateCorps(){
-    this.Service.putCorps(this.addModuleForm.value,this.editData.id)
+
+    const Corps ={
+      code: this.addModuleForm.value['code'],
+      nomCorps:this.addModuleForm.value['nomCorps'], 
+      echelon: {
+        id: this.addModuleForm.value['echelon_id']
+      }
+    };
+    // console.log("Corp = ", Corps)
+    this.Service.putCorps(Corps,this.editData.id)
     .subscribe({
       next:(res)=>{
 
