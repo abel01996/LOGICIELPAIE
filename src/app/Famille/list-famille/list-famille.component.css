@@ -40,6 +40,10 @@
     text-transform: uppercase;
   
   }
+  /* .mat-elevation-z8{
+    width: 70%;
+   overflow-x:auto;
+  } */
   
   
   @media screen and (max-width: 600px) {
@@ -47,6 +51,11 @@
     .border button {
       width: 330px;
     }
+  }
+  .mat-card {
+    width: 30%;
+    height:105px;
+    margin-top: 60px;
   }
   
   mat-card {

@@ -1,104 +1,118 @@
-<!-- 
+<form [formGroup]="addModuleForm" style="margin-left: 70px; width: 100%;">
+ 
+  <div class="container-md">
+    <div class="row"style="margin-left: 80px;">
+      <div class="col-md-2  card card text-dark card-width:10px; "style="font-weight:bold;text-align:center;">Matricule:</div>
+      <div class="col-md-3 card text-center">
+        <mat-form-field style="height: 70px;" >
+          <input  formControlName="Periode" matInput placeholder="Matricule"readonly="readonly"  formControlName="employe_id">
+          </mat-form-field>
+         </div>
+      <div class="col-md-2  card card text-dark" style="font-weight:bold;text-align:center;">Periode:</div>
+       <div class="col-md-3 card text-center">
+        <mat-form-field  style="height: 70px;" >
+          <input  matInput [matDatepicker]= "picker" formControlName="periode" matInput placeholder="Sasir la Periode">
+            <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+         </div>
+    </div><br>
+    <table class=" table table-bordered bg-white table-striped" style="width: 90%;margin-left:-5px;">
+      <thead>
+      <tr >
+        <th>code</th>
+        <th>rubrique</th>
+        <th>nbr</th>
+        <th>unite</th>
+        <th>indice</th>
+        <th>vpi</th>
+        <th>base</th>
+        <th>taux</th>
+        <th>gain</th>
+        <th>revenue</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rubrique of rubrique">
+        <td style="border: solid  gray 1px;width: 50px; padding-left: 10px;">
+          {{rubrique?.codeFiche}}
+        </td >
+          <td style="border: solid  gray 1px;width: 325px; padding-left: 10px;">
+            {{rubrique.rubriqueFiche}}
+          </td>
+          <td>
+          <div class="col">
+            <div class="row-md-6 "><input type="text" style="width: 50px;"></div>
+          </div>
+        </td>
+          <td style="border: solid gray 1px;width: 50px; border-left-color:  black">
+          {{rubrique.montantFiche}}
+         </td>
+          <td>
+            <div class="col">
+              <div class="row-md-6 "><input type="text" style="width: 70px;"></div>
+            </div>
+          </td>
+          <td>
+            <div class="col">
+              <div class="row-md-6 "><input type="text" style="width: 50px;"></div>
+            </div>
+          </td>
+          <td>
+            <div class="col">
+              <div class="row-md-6 "><input type="text"style="width: 90px;"></div>
+            </div>
+          </td>
+          <td>
+            <div class="col">
+              <div class="row-md-6 "><input type="text"style="width: 50px;"></div>
+            </div>
+          </td>
+          <td>
+            <div class="col">
+              <div class="row-md-6 "><input type="text"style="width: 100px;"></div>
+            </div>
+          </td>
+          <td>
+            <div class="col">
+             <div class="row-md-6 ">
+              <input type="text" style="width: 100px;"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody> 
 
-  
-
-<mat-toolbar style="background-color: #673ab7; color : white;">
-    <span class="fill-remaining-space" align="center">{{actiontitle}}</span>
-  </mat-toolbar>
-  
-  <div class="container">
-    <form class="form" [formGroup]="addEmployeForm">
-      <mat-form-field appearance="outline">
-        <mat-label>Nbre Epouse</mat-label>
-        <input matInput placeholder="Sasir votre nbrEpouse" formControlName="nbrEpouse"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Nbre Enfant</mat-label>
-        <input matInput placeholder="Sasir votre nbrEnfant" formControlName="nbrEnfant"/>
-      </mat-form-field> <br>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Nbre Part Fiscal</mat-label>
-        <input matInput placeholder="Sasir votre nbrPartFical" formControlName="nbrPartFical"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Nbre Part Impot</mat-label>
-        <input matInput placeholder="Sasir votre nbrPartImpot" formControlName="nbrPartImpot"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Nobre D'enfant Prestataire</mat-label>
-        <input matInput placeholder="Sasir votre nbrDenfantPrest" formControlName="nbrDenfantPrest"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Total Enfant</mat-label>
-        <input matInput placeholder="Sasir votre nbre totalEnfant" formControlName="totalEnfant"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Jour de Base</mat-label>
-        <input matInput placeholder="Sasir votre jourBase" formControlName="jourBase"/>
-      </mat-form-field> <br>
-      <mat-form-field appearance="outline">
-        <mat-label>Nbre jour Presence</mat-label>
-        <input matInput placeholder="Sasir votre nbreJourPresence " formControlName="nbreJourPresence"/>
-      </mat-form-field> <br>
-      <button mat-raised-button color="primary" class="pull"   type="submit" [disabled]="!addEmployeForm.valid" (click)= "addSituaFamille()" > {{actionBtn}}</button>
-      <button mat-raised-button color="warm" style="background-color: red; color: white;" class="pull-right" type="submit" (click)="closeDialog()" mat-dialog-close>Fermer</button>
-    </form>
-  </div> -->
-  <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
-      <button mat-icon-button disabled></button>
-      <mat-checkbox class="checklist-leaf-node"
-                    [checked]="checklistSelection.isSelected(node)"
-                    (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
-    </mat-tree-node>
-  
-    <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
-      <button mat-icon-button disabled></button>
-      <mat-form-field appearance="fill">
-        <mat-label>New item...</mat-label>
-        <input matInput #itemValue placeholder="Ex. Lettuce">
-      </mat-form-field>
-      <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
-    </mat-tree-node>
-  
-    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-      <button mat-icon-button matTreeNodeToggle
-              [attr.aria-label]="'Toggle ' + node.item">
-        <mat-icon class="mat-icon-rtl-mirror">
-          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-        </mat-icon>
-      </button>
-      <mat-checkbox [checked]="descendantsAllSelected(node)"
-                    [indeterminate]="descendantsPartiallySelected(node)"
-                    (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
-      <button mat-icon-button (click)="addNewItem(node)"><mat-icon>add</mat-icon></button>
-    </mat-tree-node>
-  </mat-tree> -->
-  <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
-    <!-- This is the tree node template for leaf nodes -->
-    <!-- <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-      <li class="mat-tree-node">
-        <!-- use a disabled button to provide padding for tree leaf -->
-        <!-- <button mat-icon-button disabled></button>
-        {{node.name}}
-      </li>
-    </mat-tree-node> -->
-    <!-- This is the tree node template for expandable nodes -->
-    <!-- <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-      <li> -->
-        <!-- <div class="mat-tree-node">
-          <button mat-icon-button matTreeNodeToggle
-                  [attr.aria-label]="'toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          {{node.name}} --> 
-        <!-- </div>
-        <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-          <ng-container matTreeNodeOutlet></ng-container>
-        </ul>
-      </li>
-    </mat-nested-tree-node>
-  </mat-tree>  -->
+      <!-- footer table-->
+      <tbody>
+        <tr>
+          <td colspan="8" class="bg-secondary" >
+           <span style=" float: right; display: flex; flex-direction: column; font-size: 16px;">Total des gains et des retenues</span>
+          </td>
+          <td>
+            <div class="col">
+              <div class="row-md-6 "><input type="text" style="width: 100px;"></div>
+            </div>
+          </td>
+          <td >
+            <div class="col">
+              <div class="row-md-6 "><input type="text" style="width: 100px;"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td colspan="9"class="bg-secondary">
+            <span style=" float: right; display: flex; flex-direction: column;font-size: 16px;">Net a payer</span>
+          </td>
+          <td>
+            <div class="col">
+              <div class="row-md-6 "><input type="text" style="width: 100%;"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <!-- end footer table -->
+    </table>
+    </div><br><br>
+</form>

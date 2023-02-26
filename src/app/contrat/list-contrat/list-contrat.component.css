@@ -54,7 +54,11 @@
       width: 330px;
     }
   }
-  
+  .mat-card {
+    width: 35%;
+    height:105px;
+    margin-top: 60px;
+  }
   mat-card {
     background-color: #cdc2e0;
     height: 110px;

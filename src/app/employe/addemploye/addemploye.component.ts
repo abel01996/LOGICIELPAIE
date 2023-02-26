@@ -9,6 +9,8 @@ import { Contrat } from 'src/model/Contrat';
 import { ContratService } from 'src/app/service/ContratService';
 import { ServicePaie } from 'src/app/service/ServicePaie';
 import { ModelPaie } from 'src/model/ModelPaie';
+import { ServiceFamille } from 'src/app/service/ServiceFamile';
+import { Famille } from 'src/model/Famillle';
 @Component({
   selector: 'app-addemploye',
   templateUrl: './addemploye.component.html',
@@ -16,16 +18,19 @@ import { ModelPaie } from 'src/model/ModelPaie';
 })
 export class AddemployeComponent implements OnInit {
   EtatCivil!: ModelPaie[];
+  Epouse!: Famille[];
   contrat!: Contrat[];
   employer!: Employe[];
   addEmployeForm!: FormGroup;
   addEmployeForm1!: FormGroup;
   actionBtn: string = 'Ajouter Agent'
   actiontitle: string = 'Ajouter Agent'
+  generatedMatricule :any;
+  matriculeEmp:any;
+  existingMatricules!:any
 
 
-
-  constructor(private fb: FormBuilder,
+  constructor(private fb: FormBuilder,private ServiceEpouse:ServiceFamille,private servicePaie:ServicePaie,
     private paramService: ServiceEmployer, private Service: ContratService, private ServiceEtatcivile: ServicePaie,
     @Inject(MAT_DIALOG_DATA) public editData: any,
     private dialog: MatDialogRef<AddemployeComponent>,
@@ -36,10 +41,12 @@ export class AddemployeComponent implements OnInit {
   ngOnInit() {
     this.isOptional= false;
     this.relaodEtatCivil();
+    this.relaodEpouse();
     this.relaodContrat();
     this.relaodData();
+    this.getMatricule();
     this.addEmployeForm = this.fb.group({
-      matricule: ['', Validators.required],
+      matricule: [this.generatedMatricule,Validators.nullValidator],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       adresse: ['', Validators.required],
@@ -50,11 +57,15 @@ export class AddemployeComponent implements OnInit {
     this.addEmployeForm1 = this.fb.group({
       etatCivil_id: ['',Validators.required],
       dateNaissance: ['', Validators.required],
-      cni: ['', Validators.required]
+      cni: ['', Validators.required],
+      nbrEpouse: ['', Validators.nullValidator],
+      totalEnfant: ['', Validators.nullValidator],
+      embouche: ['', Validators.required],
+      dateFin: ['', Validators.required]
       
      
     })
-
+//  console.log("this",this.addEmployeForm, 'this2',this.addEmployeForm1)
     if (this.editData) {
       this.actiontitle = 'Modifier Agent'
       this.actionBtn = ' Modifier Agent';
@@ -65,9 +76,11 @@ export class AddemployeComponent implements OnInit {
       this.addEmployeForm1.controls['dateNaissance'].setValue(this.editData.dateNaissance);
       this.addEmployeForm1.controls['cni'].setValue(this.editData.cni);
       this.addEmployeForm1.controls['etatCivil_id'].setValue(this.editData.etatCivil.id);
-      // this.addEmployeForm1.controls['nbrEpouse'].setValue(this.editData.nbrEpouse);
+      this.addEmployeForm1.controls['nbrEpouse'].setValue(this.editData.nbrEpouse);
       // this.addEmployeForm1.controls['nbrEnfant'].setValue(this.editData.nbrEnfant);
-      // this.addEmployeForm1.controls['totalEnfant'].setValue(this.editData.totalEnfant);
+      this.addEmployeForm1.controls['totalEnfant'].setValue(this.editData.totalEnfant);
+      this.addEmployeForm1.controls['embouche'].setValue(this.editData.embouche);
+      this.addEmployeForm1.controls['dateFin'].setValue(this.editData.dateFin);
       
 
     }
@@ -81,6 +94,47 @@ export class AddemployeComponent implements OnInit {
         console.log(err);
       })
   }
+getMatricule(){
+  this.servicePaie.getMatricule()
+  .subscribe(data=>{
+    this.existingMatricules = data;
+    console.log("lll", this.existingMatricules)
+  }
+  ,err=>{
+    console.log(err);
+  })
+}
+
+  relaodEpouse(){
+    
+    this.ServiceEpouse.getEpouse()
+      .subscribe(data=>{
+        this.Epouse= data;
+      },err=>{
+        console.log(err);
+      })
+  }
+  generateMatricule() {
+  this.getMatricule();
+  const matriculePrefix = 'MP-';
+  let matriculeSuffix = Math.floor(Math.random() * 100000000);
+  let newMatricule = matriculePrefix + matriculeSuffix;
+  // @ts-ignore
+  while (this.existingMatricules?.includes(newMatricule)) {
+    matriculeSuffix = Math.floor(Math.random() * 10000);
+    newMatricule = matriculePrefix + matriculeSuffix;
+  }
+
+  // @ts-ignore
+  this.existingMatricules?.push(newMatricule);
+  return newMatricule;
+}
+  generateAndShowMatricule() {
+  this.generatedMatricule = this.generateMatricule();
+
+  console.log("log",this.generatedMatricule)
+}
+
   relaodContrat() {
     this.Service.getContrat()
       .subscribe(data => {
@@ -101,17 +155,18 @@ export class AddemployeComponent implements OnInit {
   addEmployer() {
     if (!this.editData) {
       if (this.addEmployeForm.valid) {
-
         const employer = {
-          matricule: this.addEmployeForm.value['matricule'],
+          matricule:this.generatedMatricule,
           nom: this.addEmployeForm.value['nom'],
           prenom: this.addEmployeForm.value['prenom'],
           adresse: this.addEmployeForm.value['adresse'],
           dateNaissance: this.addEmployeForm1.value['dateNaissance'],
           cni: this.addEmployeForm1.value['cni'],
-          // nbrEpouse: this.addEmployeForm1.value['nbrEpouse'],
+           nbrEpouse: this.addEmployeForm1.value['nbrEpouse'],
           // nbrEnfant: this.addEmployeForm1.value['nbrEnfant'],
-          // totalEnfant: this.addEmployeForm1.value['totalEnfant'],
+           totalEnfant: this.addEmployeForm1.value['totalEnfant'],
+           embouche:this.addEmployeForm1.value['embouche'],
+           dateFin:this.addEmployeForm1.value['dateFin'],
           etatCivil:{
             id: this.addEmployeForm1.value['etatCivil_id'],
           }
@@ -120,7 +175,7 @@ export class AddemployeComponent implements OnInit {
         //   this.addEmployeForm.value['contrat_id'],
         //   this.addEmployeForm.value['etatCivil_id']);
 
-        // console.log("employer:", employer, "id:", idContrat);
+         console.log("employer:", employer);
 
         this.paramService.postEmployer(employer)
           .subscribe({
@@ -142,15 +197,17 @@ export class AddemployeComponent implements OnInit {
   }
   updateEmployer() {
     const Employer = {
-      matricule:this.addEmployeForm.value['matricule'],
+      matricule:this.generatedMatricule,
       nom: this.addEmployeForm.value['nom'],
       prenom: this.addEmployeForm.value['prenom'],
       adresse: this.addEmployeForm.value['adresse'],
       dateNaissance: this.addEmployeForm1.value['dateNaissance'],
       cni: this.addEmployeForm1.value['cni'],
-      // nbrEpouse: this.addEmployeForm1.value['nbrEpouse'],
+       nbrEpouse: this.addEmployeForm1.value['nbrEpouse'],
       // nbrEnfant: this.addEmployeForm1.value['nbrEnfant'],
-      // totalEnfant: this.addEmployeForm1.value['totalEnfant'],
+       totalEnfant: this.addEmployeForm1.value['totalEnfant'],
+       embouche:this.addEmployeForm1.value['embouche'],
+       dateFin:this.addEmployeForm1.value['dateFin'],
       etatCivil: {
         id: this.addEmployeForm1.value['etatCivil_id'],
       }

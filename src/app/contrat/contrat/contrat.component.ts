@@ -17,7 +17,7 @@ import { ModelPaie } from 'src/model/ModelPaie';
   styleUrls: ['./contrat.component.css']
 })
 export class ContratComponent implements OnInit {
-
+    matriculeEmploye:any;
   // Salaire!:any[];
       Agence!: Agence[];
       ModePaie!: ModelPaie[];
@@ -46,6 +46,8 @@ export class ContratComponent implements OnInit {
     private dialog : MatDialogRef<ContratComponent>) { }
     isOptional!: boolean;
   ngOnInit(): void {
+
+    this.matriculeEmploye = this.getMatricule();
     this.isOptional=false;
     this.relaodTypPaieRef();
     this.relaodTypePaie();
@@ -61,14 +63,14 @@ export class ContratComponent implements OnInit {
     this.relaodData();
 
     this.addModuleForm = this.fb.group({
-      embouche: ['', Validators.required],
-      dateFin: ['', Validators.required],
+      // embouche: ['', Validators.required],
+      // dateFin: ['', Validators.required],
       corp_id: ['', Validators.required],
       classe_id: ['', Validators.required],
       statut_id: ['', Validators.required],
       hierarchie_id:['', Validators.required],
       echelon_id:['', Validators.required],
-      employe_id:['', Validators.required],
+      employe_id:[this.matriculeEmploye.matricule, Validators.required],
       typeContrat_id:['', Validators.required],
      
     });
@@ -84,24 +86,16 @@ export class ContratComponent implements OnInit {
        jourBase:['', Validators.required],
        nbrPartFical:['', Validators.required],
       nbrPartImpot:['', Validators.required],
-      nbrDenfantPrest:['', Validators.required],
+      nbrDenfantPrest:['', Validators.nullValidator],
       nbreJourPresence:['', Validators.required]
    });
 
 
     if(this.editData){
-      this.actiontitle='Modifier Contrat'
+      this.actiontitle='Modifier Contrat';
       this.actionBtn =' Modifier Contrat';
-      this.addModuleForm.controls['employe_id'].setValue(this.editData.employe.id);
-      this.addModuleForm.controls['embouche'].setValue(this.editData.embouche);
-      this.addModuleForm.controls['dateFin'].setValue(this.editData.dateFin);
-      this.addModuleForm.controls['corp_id'].setValue(this.editData.corps.id);
-      this.addModuleForm.controls['classe_id'].setValue(this.editData.classe.id);
-      this.addModuleForm.controls['statut_id'].setValue(this.editData.statut.id);
-      this.addModuleForm.controls['hierarchie_id'].setValue(this.editData.hierarchie.id);
-      this.addModuleForm.controls['echelon_id'].setValue(this.editData.echelon.id);
-      this.addModuleForm.controls['typeContrat_id'].setValue(this.editData.typeContrat.id);
       //salaire/////////////////////////////////////////////////////////////////////////////
+      
       this.addModuleForm1.controls['agence_id'].setValue(this.editData.agence.id);
       this.addModuleForm1.controls['modePaie_id'].setValue(this.editData.modePaie.id);
       this.addModuleForm1.controls['typePaie_id'].setValue(this.editData.typepaie.id);
@@ -114,6 +108,18 @@ export class ContratComponent implements OnInit {
       this.addModuleForm1.controls['nbrDenfantPrest'].setValue(this.editData.nbrDenfantPrest);
       this.addModuleForm1.controls['nbreJourPresence'].setValue(this.editData.nbreJourPresence);
 
+
+     
+      // this.addModuleForm.controls['embouche'].setValue(this.editData.embouche);
+      // this.addModuleForm.controls['dateFin'].setValue(this.editData.dateFin);
+      this.addModuleForm.controls['corp_id'].setValue(this.editData.corps.id);
+      this.addModuleForm.controls['classe_id'].setValue(this.editData.classe.id);
+      this.addModuleForm.controls['statut_id'].setValue(this.editData.statut.id);
+      this.addModuleForm.controls['hierarchie_id'].setValue(this.editData.hierarchie.id);
+      this.addModuleForm.controls['echelon_id'].setValue(this.editData.echelon.id);
+      this.addModuleForm.controls['typeContrat_id'].setValue(this.editData.typeContrat.id);
+      this.addModuleForm.controls['employe_id'].setValue(this.editData.matriculeEmploye.id);
+      
 
     }
   }
@@ -150,6 +156,14 @@ export class ContratComponent implements OnInit {
       })
   }
 
+  getMatricule(){
+    let element = localStorage.getItem('element');
+    if(element) {
+      const el: any  = JSON.parse(element);
+      return el;
+    }
+    return null;
+  }
   relaodAgence(){
     this.salairesevice.getAgence()
       .subscribe(data=>{
@@ -235,8 +249,8 @@ export class ContratComponent implements OnInit {
       // employe_id:['', Validators.required],
       // typeContrat_id:['', Validators.required]
         const Contrat ={
-          embouche:this.addModuleForm.value['embouche'],
-          dateFin:this.addModuleForm.value['dateFin'],
+          // embouche:this.addModuleForm.value['embouche'],
+          // dateFin:this.addModuleForm.value['dateFin'],
           numCompte:this.addModuleForm1.value['numCompte'],
           salaireBase:this.addModuleForm1.value['salaireBase'],
           nbrPartFical: this.addModuleForm1.value['nbrPartFical'],
@@ -245,7 +259,7 @@ export class ContratComponent implements OnInit {
           jourBase: this.addModuleForm1.value['jourBase'],
           nbreJourPresence: this.addModuleForm1.value['nbreJourPresence'],
           employe:{
-            id: this.addModuleForm.value['employe_id']
+            id: this.matriculeEmploye.id
           },
           corps:{
             id:this.addModuleForm.value['corp_id']
@@ -305,8 +319,8 @@ export class ContratComponent implements OnInit {
   updateCorps(){
 
     const Contrat ={
-          embouche:this.addModuleForm.value['embouche'],
-          dateFin:this.addModuleForm.value['dateFin'] ,
+          // embouche:this.addModuleForm.value['embouche'],
+          // dateFin:this.addModuleForm.value['dateFin'] ,
           numCompte:this.addModuleForm1.value['numCompte'],
           salaireBase:this.addModuleForm1.value['salaireBase'],
           nbrPartFical: this.addModuleForm1.value['nbrPartFical'],
@@ -315,7 +329,7 @@ export class ContratComponent implements OnInit {
           jourBase: this.addModuleForm1.value['jourBase'],
           nbreJourPresence: this.addModuleForm1.value['nbreJourPresence'],
           employe:{
-            id: this.addModuleForm.value['employe_id']
+            id: this.matriculeEmploye.id
             },
       corps: {
         id: this.addModuleForm.value['corp_id']

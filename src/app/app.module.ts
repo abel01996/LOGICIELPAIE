@@ -77,7 +77,17 @@ import { EnfantComponent } from './Famille/enfant/enfant.component';
 import { ListenfantComponent } from './Famille/listenfant/listenfant.component';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {TreeModule} from 'primeng/tree';
+import { ListFichePaieComponent } from './fichePaie/list-fiche-paie/list-fiche-paie.component'
+import { FichePaieService } from './service/FichePaieService';
+import { DetailFichePaieComponent } from './fichePaie/detail-fiche-paie/detail-fiche-paie.component';
+import {InputTextModule} from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { RubriqueComponent } from './rubriqueFiche/rubrique/rubrique.component';
+import { ListrubriqueComponent } from './rubriqueFiche/listrubrique/listrubrique.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { MessageService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,6 +128,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ListDepartementComponent,
     ContratComponent,
     TypeContratComponent,
+    
     ListTypeContratComponent,
     ListContratComponent,
     AddFichePaieComponent,
@@ -125,6 +136,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ListFamilleComponent,
     EnfantComponent,
     ListenfantComponent,
+    ListFichePaieComponent,
+    DetailFichePaieComponent,
+    RubriqueComponent,
+    ListrubriqueComponent,
  
    
   ],
@@ -132,10 +147,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDialogModule,
     BrowserModule,
     MatNativeDateModule,
+    TreeModule,
     MatButtonModule,
     MatAutocompleteModule,
     MatCardModule,
     MatMenuModule,
+    MatBadgeModule,
+    TableModule,
+    DragDropModule,
+    InputTextModule,
     MatTabsModule,
     MatStepperModule,
     MatTableModule,
@@ -158,7 +178,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDatepickerModule
   ],
 
-  providers: [ServiceEmployer,ServicePaie,SituaFamilleService,ContratService,ServiceFamille,
+ 
+  providers: [ServiceEmployer,ServicePaie,SituaFamilleService,ContratService, MessageService,
+    ServiceFamille, FichePaieService,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]

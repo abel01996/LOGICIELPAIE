@@ -57,10 +57,14 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>CNI</th>
         <td  mat-cell *matCellDef="let element"> {{element.cni | number}} </td>
       </ng-container>
-      <ng-container matColumnDef="">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>CNI</th>
-        <td  mat-cell *matCellDef="let element"> {{element.cni | number}} </td>
+      <ng-container matColumnDef="embouche">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date  Embouche</th>
+        <td mat-cell *matCellDef="let element">{{element?.embouche}}</td>
       </ng-container>
+      <ng-container matColumnDef="dateFin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Fin</th>
+        <td mat-cell *matCellDef="let element">{{element?.dateFin}}</td>
+      </ng-container> -->
   
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
@@ -70,16 +74,25 @@
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="editEmployer(element)">
-              <mat-icon mat-fab color="primary">edit</mat-icon> Modifier Info Employer
+              <mat-icon mat-fab color="primary">edit</mat-icon> Modifier Info Agent
             </button>
             <button mat-menu-item (click)="deleteEmployer(element.id)">
-              <mat-icon mat-fab color="warn">delete</mat-icon> Supprimer Employer
+              <mat-icon mat-fab color="warn">delete</mat-icon> Supprimer Agent
             </button>
             <button mat-menu-item (click)="openDialogEpouse(element)">
               <mat-icon mat-fab color="primary">add</mat-icon> Ajouter epoux(se)
             </button>
-            <button mat-menu-item (click)="openDialogEnfant()">
+            <button mat-menu-item (click)="openDialogEnfant(element)">
               <mat-icon mat-fab color="primary">add</mat-icon> Ajouter ses Enfants
+            </button>
+            <button mat-menu-item (click)="openDialogContrat(element)">
+              <mat-icon mat-fab color="primary">add</mat-icon> Ajouter Contrat
+            </button>
+            <button mat-menu-item (click)="calculFichePaie(element)">
+              <mat-icon mat-fab color="primary"> payment </mat-icon>Calcul Salaire
+            </button>
+             <button mat-menu-item (click)="voireFichePaie(element.matricule)">
+              <mat-icon mat-fab color="primary">visibility</mat-icon>Voir Fiche Paie
             </button>
           </mat-menu>
           
@@ -102,6 +115,7 @@
     <router-outlet>
       <br><br>
       <app-list-famille></app-list-famille>
+      
     </router-outlet>
 
   </div> -->

@@ -20,10 +20,13 @@ import { AddFamilleComponent } from './Famille/add-famille/add-famille.component
 import { ListFamilleComponent } from './Famille/list-famille/list-famille.component';
 import { ListenfantComponent } from './Famille/listenfant/listenfant.component';
 import { AddFichePaieComponent } from './fichePaie/add-fiche-paie/add-fiche-paie.component';
+import { ListFichePaieComponent } from './fichePaie/list-fiche-paie/list-fiche-paie.component';
 import { ListHierartypeComponent } from './hiertypeco/list-hierartype/list-hierartype.component';
 import { HomeComponent } from './home/home.component';
 import { ListModePaieComponent } from './modePaie/list-mode-paie/list-mode-paie.component';
 import { ListPaieServiceAppComponent } from './paiserviceapp/list-paie-service-app/list-paie-service-app.component';
+import { ListrubriqueComponent } from './rubriqueFiche/listrubrique/listrubrique.component';
+import { RubriqueComponent } from './rubriqueFiche/rubrique/rubrique.component';
 import { AddSituationFamilleComponent } from './SituationFami/add-situation-famille/add-situation-famille.component';
 import { ListSituationFamiComponent } from './SituationFami/list-situation-fami/list-situation-fami.component';
 import { ListStatutComponent } from './statut/list-statut/list-statut.component';
@@ -59,6 +62,9 @@ const routes: Routes = [
   {path:'addFichePaie' , component:AddFichePaieComponent},
   {path:'listEpouse' , component:ListFamilleComponent},
   {path:'listEnfant' , component:ListenfantComponent},
+  {path:'listFichePaie', component:ListFichePaieComponent},
+  {path:'listrubriqueFiche', component:ListrubriqueComponent},
+  {path:'rubrique', component:RubriqueComponent}
  
  
  

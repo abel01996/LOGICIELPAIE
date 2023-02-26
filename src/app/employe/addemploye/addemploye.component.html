@@ -17,11 +17,18 @@
                 <!-- <form class="form" [formGroup]="addEmployeForm"> -->
                   <mat-form-field hintLabel="Max 10 characters" appearance="fill">
                     <mat-label>Matricule</mat-label>
-                    <input matInput #input maxlength="10" placeholder="Ex. 3606456"formControlName="matricule">
+                    <input matInput #input maxlength="10" formControlName="matricule"
+                 value={{generatedMatricule}}  readonly="readonly">
                     <!-- <mat-hint align="end">{{input.value.length}}/10</mat-hint> -->
                   </mat-form-field><br>
-            
-                <mat-form-field appearance="outline">
+                  <div style="margin-left: 100px;">
+                    <button (click)=" generateAndShowMatricule() " style="border:none;width: 30%; margin-top: 10px;
+                   background-color: #673ab7;color: white;border-radius: 10px; font-size: 20px;">
+                    <mat-icon style="color: white;
+                    ">refresh</mat-icon>
+                     Generer matricule</button>
+                     </div>
+                    <mat-form-field appearance="outline">
                   <mat-label>nom</mat-label>
                   <input matInput placeholder="Sasir votre nom" formControlName="nom"/>
                 </mat-form-field><br>
@@ -47,7 +54,7 @@
         </mat-step>
         <mat-step [stepControl]="addEmployeForm1" [optional]="isOptional">
           <form [formGroup]="addEmployeForm1">
-            <ng-template matStepLabel>Parametre Personel</ng-template>
+            <ng-template matStepLabel>Situation Familiale</ng-template>
         
             <div class="containerdeux ">
               <mat-toolbar style="background-color: #673ab7; color : white; width: 50%; text-align: center;">
@@ -74,29 +81,32 @@
                 </mat-select>
                 <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
               </mat-form-field><br>
-                <!-- <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
                   <mat-label>Nombre epouse</mat-label>
-                  <input matInput #input maxlength="10" placeholder="Ex. 3606456"formControlName="nbrEpouse">
+                  <input matInput #input maxlength="10" placeholder="Nombre epouse"formControlName="nbrEpouse">
                   <!-- <mat-hint align="end">{{input.value.length}}/10</mat-hint> -->
-                <!-- </mat-form-field><br>
-              <mat-form-field appearance="outline">
-                <mat-label> nbrEnfant</mat-label>
-                <input matInput placeholder="Sasir votre nom" formControlName="nbrEnfant"/>
-              </mat-form-field><br> --> --> -->
-                <!-- <mat-form-field appearance="outline">
-                  <mat-label>nbrPartImpot</mat-label>
-                  <input matInput placeholder="Sasir votre adresse" formControlName="nbrPartImpot"/>
-                </mat-form-field> <br>
-                <mat-form-field appearance="outline">
-                  <mat-label>nbrDenfantPrest</mat-label>
-                  <input matInput placeholder="Sasir votre adresse" formControlName="nbrDenfantPrest"/>
-                </mat-form-field><br> -->
-                <!-- <mat-form-field appearance="outline">
-                  <mat-label> totalEnfant</mat-label>
-                  <input matInput placeholder="Sasir votre adresse" formControlName="totalEnfant"/>
                 </mat-form-field><br>
-               
-                 -->
+          
+               <mat-form-field appearance="outline">
+                  <mat-label> totalEnfant</mat-label>
+                  <input matInput placeholder="totalEnfant" formControlName="totalEnfant"/>
+                </mat-form-field><br>
+
+                <mat-form-field appearance="outline" >
+                  <mat-label>Date Embouche</mat-label>
+                      <input matInput [matDatepicker]="picker" formControlName="embouche" matInput placeholder="Sasir votre date d'Embouche">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field><br>
+                   <div>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Date Fin</mat-label>
+                        <input matInput [matDatepicker]="datepicker" formControlName="dateFin" matInput placeholder="Sasir votre date fin">
+                      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #datepicker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                
                 </div>
             <div>
               <button  style="margin-top:30px;"  mat-flat-button color="accent" mat-button matStepperPrevious >Precedent</button>

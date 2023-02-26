@@ -11,7 +11,7 @@ export class Employe {
      cni?:string;
      etatCivil_id?:number;
      nbrEpouse?:string;
-     nbrEnfant?:string;
+     // nbrEnfant?:string;
      totalEnfant?:string;
      
 

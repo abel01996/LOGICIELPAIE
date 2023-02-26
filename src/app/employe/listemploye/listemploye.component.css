@@ -9,16 +9,22 @@
   td, th {
     width: 25%;
   }
+  .mat-elevation-z8{
+    width: 60%;
+   overflow-x: auto;
+   margin-right: 345px;
+  }
   .epouse{
     margin-top: -560px;
   }
-  .mat-mdc-form-field {
+  /* .mat-mdc-form-field {
     font-size: 14px;
     width: 100%;
   }
-  
+   */
   .container {
     margin: 0 auto;
+    margin-right: 40px;
   
   
   }

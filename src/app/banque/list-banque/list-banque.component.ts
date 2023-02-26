@@ -25,9 +25,9 @@ export class ListBanqueComponent implements OnInit {
   
  constructor( private ServiceBanque:ServicePaie,private dialog: MatDialog){}
    
- ngAfterViewInit(): void {
-  throw new Error('Method not implemented.');
-}
+//  ngAfterViewInit(): void {
+//   throw new Error('Method not implemented.');
+// }
 public getBanque(){
   this.ServiceBanque.getBanque().subscribe({
    next:(res)=>{

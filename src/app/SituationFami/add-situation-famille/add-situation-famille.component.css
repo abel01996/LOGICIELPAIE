@@ -1,11 +1,38 @@
-.fill-remaining-space {
-    flex: 1 1 auto;
+.container-fluid{
+  padding-bottom: 30px;
+ 
+}
+  .container-md {
+    position: absolute;
+    width: 100%;
+    padding-top: 10px;
+    width: 1000px;
+    height: 610px;
+    overflow: scroll;
+    overflow-x: hidden;
     
   }
   
-  .container {
-    padding: 10px;
-  
+  body{
+    width: 100%;
+  }
+ 
+  .table{
+    background-color: #cdc2e0;
+    position: absolute;
+    width: 90%;
+    overflow: scroll;
+    
+  }
+  th{
+    text-align: center;
+  }
+  input{
+    border-radius: 2px 2px px;
+    border-color: gray;
+    place-content: 10px;
+    font: 1em sans-serif;
+    height: 30px;
   }
   .ng-star-inserted{
     top: 10px;

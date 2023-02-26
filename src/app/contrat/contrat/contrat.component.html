@@ -14,14 +14,8 @@
               </mat-toolbar>
               </div>
               <mat-form-field appearance="outline">
-                <mat-label>Select votre matricule</mat-label>
-                <mat-select  formControlName="employe_id">
-                  <mat-option  value="" disabled>Selection le matricule</mat-option>
-                  <mat-option *ngFor="let employe of Employe;" [value]="employe.id">
-                    {{employe.matricule}}
-                  </mat-option>
-                </mat-select>
-                <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                <mat-label>matricule</mat-label>
+                <input matInput placeholder="Sasir le numero telephone" readonly="readonly"  formControlName="employe_id"/>
               </mat-form-field><br>
              
             <mat-form-field appearance="fill">
@@ -46,7 +40,7 @@
               <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
             </mat-form-field>
             </div>
-            <div class="container">
+            <div class="container12">
              <mat-form-field appearance="fill">
               <mat-label>Hierarchie Employer</mat-label>
               <mat-select placeholder="votre hierarchie" formControlName="hierarchie_id">
@@ -59,23 +53,6 @@
             </mat-form-field>
           </div>
          
-          <div class="container-left">
-              <mat-form-field appearance="fill" >
-                  <mat-label>Date Embouche</mat-label>
-                      <input matInput [matDatepicker]= "picker" formControlName="embouche" matInput placeholder="Sasir votre date d'Embouche">
-                    <mat-datepicker-toggle matSuffix [for]= "picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-               </div>
-               <div class="mb-56">
-                <mat-form-field appearance="fill">
-                  <mat-label>Date Fin</mat-label>
-                      <input matInput [matDatepicker]= "datepicker" formControlName="dateFin" matInput placeholder="Sasir votre date fin">
-                    <mat-datepicker-toggle matSuffix [for]= "datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #datepicker></mat-datepicker>
-                  </mat-form-field>
-                  
-               </div>
                   <div class="container-left-type">
                   <div class="ml-3">
                     <mat-form-field appearance="fill">

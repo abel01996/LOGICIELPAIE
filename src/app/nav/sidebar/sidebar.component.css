@@ -19,4 +19,8 @@
     width: 50px;
     background-color: blueviolet;
   }
-  
+  .example-section {
+    margin: 12px 0;
+    width: 220px;
+    height: 100px;
+  }

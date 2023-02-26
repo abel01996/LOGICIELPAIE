@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import{Observable} from 'rxjs';
+import{map, Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Employe } from 'src/model/Employe';
 import { ModelPaie } from 'src/model/ModelPaie';
@@ -281,6 +281,13 @@ public deleteEtatCivil(id:number):Observable<void>{
 public getDepartement():Observable<ModelPaie[]>{
     return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listDepartement`);
 }
+public getDepartementTree(id:any):Observable<ModelPaie[]>{
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listDepartementTree/`+id);
+}
+
+public getServiceTree(id:any):Observable<ModelPaie[]>{
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}/listServiceTree/`+id);
+}
 
 public postDepartement(departement: any,id:number){
     return this.http.post(`${this.apiServiceUrl}/saveDep/`+id, departement);
@@ -339,12 +346,38 @@ public deleteTypeContrat(id:number):Observable<void>{
     return this.http.delete<any>(`${this.apiServiceUrl}/deleteTypeContrat/`+id);
 }
 
+///////////////////////////////////////Service RubriqueFiche /////////////////////////////////////////////
+
+public getRubriqueFiche():Observable<any>{
+    return this.http.get<any>(`${this.apiServiceUrl}/listRubriqueFiche`);
+}
+
+public postRubriqueFiche(rubrique:any){
+    return this.http.post(`${this.apiServiceUrl}/saveRubriqueFiche`, rubrique);
+}
+ public getIdRubriqueFiche(id:number){
+    return this.http.get<ModelPaie[]>(`${this.apiServiceUrl}`+'/'+id);
+ }
+    
+public putRubriqueFiche(data:any,id:number):Observable<any>{
+    return this.http.put<any>(`${this.apiServiceUrl}/updateRubriqueFiche/`+id,data);
+}
+
+public deleteRubriqueFiche(id:number):Observable<void>{ 
+    return this.http.delete<any>(`${this.apiServiceUrl}/deleteRubriqueFiche/`+id);
+}
+
+
+
 //////ALLEmployerData///
 public getlistContratsByEmp(matricule:string){
-    return this.http.get(`${this.apiServiceUrl}/listContratsByEmp/${matricule}`);
+    // const param: HttpParams = new HttpParams();
+    // param.append("matricule", "2233456789")
+    return this.http.get(`${this.apiServiceUrl}/listContratsByEmp/${matricule}`)
+    
 }
-getMatricule(matricule: string) {
-    return this.http.get(`${this.apiServiceUrl}/matricule`);
+getMatricule() {
+    return this.http.get(`${this.apiServiceUrl}/listMatricule`);
   }
 
 }

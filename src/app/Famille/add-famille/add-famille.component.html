@@ -29,14 +29,14 @@
           </mat-form-field><br>
 
           <mat-form-field appearance="fill">
-            <mat-label>Date Etat Civil</mat-label>
+            <mat-label>Date Mariage</mat-label>
                 <input matInput [matDatepicker]= "datepicker" formControlName="mariage" matInput placeholder="Sasir votre date fin">
               <mat-datepicker-toggle matSuffix [for]= "datepicker"></mat-datepicker-toggle>
               <mat-datepicker #datepicker></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>matricule</mat-label>
-              <input matInput placeholder="Sasir le numero telephone" [disabled]="false" formControlName="employe_id"/>
+              <input matInput placeholder="Sasir le numero telephone" readonly="readonly"  formControlName="employe_id"/>
             </mat-form-field><br> 
        <!-- <mat-form-field appearance="outline">
             <mat-label>Select Matricule Epoux</mat-label>

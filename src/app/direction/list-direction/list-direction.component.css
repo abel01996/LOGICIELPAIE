@@ -14,7 +14,7 @@
     width: 100%;
   }
   
-  .container {
+  .container1 {
     margin: 0 auto;
   
   
@@ -48,7 +48,13 @@
       width: 330px;
     }
   }
-  
+  p-tree{
+    width: 60px;
+    padding-right: 10px;
+  }
+  .p-element{
+    width: -10px;
+  }
   mat-card {
     height: 110px;
     margin-top: 20px;

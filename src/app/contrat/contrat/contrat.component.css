@@ -5,7 +5,8 @@
     background-color: #cdc2e0; 
   }
   .container1{
-    width: 60%;
+    width: 77%;
+    margin-left: 570px;
   }
   mat-form-field{
  margin-bottom: 10px;
@@ -80,7 +81,7 @@
     display: flex;
     flex: 50%;
     float: right;
-    margin-top:-80px;
+    margin-top:-215px;
  
   } 
   .mb-53 mat-form-field {
@@ -129,21 +130,29 @@
     float: right;
     margin-top: -405px;
 }
+.container12 mat-form-field{
+  width:55%;
+  margin-top: -80px;
+  flex-direction: column;
+  display: flex;
+  flex: 50%;
+
+}
 
 .ml-3 mat-form-field{ 
-    width:25%;
+    width:40%;
     right: 10px;
-    margin-top:-190px ;
+    margin-top:-405px ;
     flex-direction: column;
     display: flex;
     flex: 50%;
 }
 .mr-3 mat-form-field{ 
-    width:30%;
-   right:  230px;
+    width:40%;
+   right:  3px;
     float: right;
-    margin-right: 85px;
-    margin-top: -190px;
+    margin-right: 5px;
+    margin-top: -315px;
     flex-direction: column;
     display: flex;
     flex: 50%;

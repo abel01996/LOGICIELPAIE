@@ -15,6 +15,7 @@ export class EnfantComponent implements OnInit {
 
   Enfant!: Famille[];
   Employe!:Employe[];
+  matriculeEmploye: any;
   addModuleForm!: FormGroup;
   actionBtn: string ='Ajouter Enfant' 
   actiontitle:string ='Ajouter Enfant'
@@ -25,6 +26,7 @@ export class EnfantComponent implements OnInit {
     private dialog : MatDialogRef<EnfantComponent>) { }
 
   ngOnInit(): void {
+    this.matriculeEmploye = this.getMatricule();
     this.relaodEmployer();
     this.relaodData();
     this.addModuleForm = this.fb.group({
@@ -33,7 +35,7 @@ export class EnfantComponent implements OnInit {
       dateNaissance: ['', Validators.required],
       lieuNaiss: ['', Validators.required],
       numeroRegistre: ['', Validators.required],
-      employe_id:['', Validators.required]
+      employe_id:[this.matriculeEmploye.matricule, Validators.required]
       
 
     });
@@ -46,9 +48,18 @@ export class EnfantComponent implements OnInit {
       this.addModuleForm.controls['dateNaissance'].setValue(this.editData.dateNaissance);
       this.addModuleForm.controls['lieuNaiss'].setValue(this.editData.lieuNaiss);
       this.addModuleForm.controls['numeroRegistre'].setValue(this.editData.numeroRegistre);
-      this.addModuleForm.controls['employe_id'].setValue(this.editData.employe.id);
+      this.addModuleForm.controls['employe_id'].setValue(this.editData.matriculeEmploye.id);
     }
   }
+  getMatricule(){
+    let element = localStorage.getItem('element');
+    if(element) {
+      const el: any  = JSON.parse(element);
+      return el;
+    }
+    return null;
+  }
+
   relaodData(){
     this.Service.getEnfant()
       .subscribe(data=>{
@@ -75,7 +86,7 @@ export class EnfantComponent implements OnInit {
           lieuNaiss:this.addModuleForm.value['lieuNaiss'],
           numeroRegistre:this.addModuleForm.value['numeroRegistre'],
           employe:{
-            id: this.addModuleForm.value['employe_id']
+            id: this.matriculeEmploye.id
           }
         }
         this.Service.postEnfant(Enfant)
@@ -103,7 +114,7 @@ export class EnfantComponent implements OnInit {
        lieuNaiss:this.addModuleForm.value['lieuNaiss'],
        numeroRegistre:this.addModuleForm.value['numeroRegistre'],
        employe:{
-         id: this.addModuleForm.value['employe_id']
+         id: this.matriculeEmploye.id
        },
      }
     this.Service.putEnfant(Enfant,this.editData.id)

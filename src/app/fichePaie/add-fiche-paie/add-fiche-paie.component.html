@@ -1,162 +1,117 @@
+<div><h1> <span>Parametres: Bulletin de Salaire</span> </h1></div> 
 
+<mat-card>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup) ="applyFilter($event)" placeholder="Saisir le nom">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="pull-right mt-3" routerLink="/listemployer">
+    <i class="fa fa-user"></i>Nouvelle Fiche</button>
+</mat-card>
 
- <div class="container mt-4">
-  <h1 class="container">Formulaire d’initialisation de fiche de paie</h1>
-  <form [formGroup]="ImportationForm" (ngSubmit)="onSubmit()">
-    <mat-stepper [linear]="isLinear" #stepper>
-      <mat-step [stepControl]="ImportationForm">
-        <ng-template matStepLabel>Etape 1</ng-template>
-        <h2>Informations Personnels</h2>
-        <div class="row">
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>matricule</mat-label>
-            <input matInput placeholder="matricule" formControlName="matricule" (keypress)="myMethod(myInput.value)"
-                   #myInput required>
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>etatCivil</mat-label>
-            <input matInput placeholder="etatCivil" formControlName="etatCivil">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label> nbrEpouse</mat-label>
-            <input matInput placeholder="nbrEpouse" formControlName="nbrEpouse">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>nbrPartImpot</mat-label>
-            <input matInput placeholder="nbrPartImpot" formControlName="nbrPartImpot" required>
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>nbrPartFical</mat-label>
-            <input matInput placeholder="nbrPartFical" formControlName="nbrPartFical">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>nbrDenfantPrest</mat-label>
-            <input matInput placeholder="jourBase" formControlName="jourBase">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label> nbrDenfantPrest</mat-label>
-            <input matInput placeholder="nbrDenfantPrest" formControlName="nbrDenfantPrest">
-          </mat-form-field> 
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label> nbreJourPresence</mat-label>
-            <input matInput placeholder="nbrEnfant" formControlName="nbrEnfant">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label> totalEnfant</mat-label>
-            <input matInput placeholder="totalEnfant" formControlName="totalEnfant">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label> totalEnfant</mat-label>
-            <input matInput placeholder="nbreJourPresence" formControlName="nbreJourPresence">
-          </mat-form-field>
-        </div>
-        <h2>Informations Personnels</h2>
-        <div class="row">
-          <!-- <mat-form-field appearance="fill" class="col-4"> -->
-            <!-- <mat-label>Contrat</mat-label>
-            <input matInput placeholder="matricule"formControlName="matricule">
-          </mat-form-field> -->
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Nom</mat-label>
-            <input matInput placeholder="nom" formControlName="nom">
-          </mat-form-field> 
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Nom</mat-label>
-            <input matInput placeholder="prenom" formControlName="prenom">
-          </mat-form-field>
-       <!-- <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Periode</mat-label>
-            <input matInput placeholder="Periode" formControlName="periode">
-          </mat-form-field> -->
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>TypePaie</mat-label>
-            <input matInput placeholder="TypePaie" formControlName="typePaie_id">
-          </mat-form-field> 
-         <!-- <mat-form-field appearance="fill" class="col-4">
-            <mat-label>TypePaieRef</mat-label>
-            <input matInput placeholder="TypePaieRef" formControlName="typePaieRef_id">
-          </mat-form-field>-->
-          <mat-form-field appearance="fill" class="col-4"> 
-            <mat-label>TypePaieRef</mat-label>
-            <input matInput placeholder="TypePaieRef" formControlName="typePaieRef_id">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Corps</mat-label>
-            <input matInput placeholder="Corps" formControlName="corp_id">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Indice</mat-label>
-            <input matInput placeholder="TypePaieRef" formControlName="salaireBase">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Classe</mat-label>
-            <input matInput placeholder="Classe" formControlName="classe_id">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Echelon</mat-label>
-            <input matInput placeholder="Echelon" formControlName="echelon_id">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Statut</mat-label>
-            <input matInput placeholder="Statut" formControlName="statut_id">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Hierarchie</mat-label>
-            <input matInput placeholder="Hierarchie" formControlName="hierarchie_id">
-          </mat-form-field>
-       </div>
-        <div align="center" style="margin-top: 30px;">
+<div class="container">
+  <div class="mat-elevation-z8"></div>
+  <table  class="table table-bordered  table-striped table-hover" mat-table [dataSource] ="dataSource" matSort >
+  <!-- <ng-container matColumnDef="contrat_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Matricule</th>
+      <td mat-cell *matCellDef="let element"> {{element.contrat.matricule}}</td>
+    </ng-container>
 
-          <!-- <button type="button" mat-stroked-button color="warn" (click)="closeDialog()">Fermer</button> -->
-          <button type="button" matStepperNext mat-raised-button color="primary"
-                  style="background-color: #297F87; margin-left: 100px;">
-            Suivant
+ -->
+ <ng-container matColumnDef="matricule">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Matricule</th>
+  <td mat-cell *matCellDef="let element">{{element.matricule}}</td>
+</ng-container>
+  
+    <!-- Progress Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+      <td mat-cell *matCellDef="let element">{{element.nom}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="prenom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Prenom</th>
+      <td mat-cell *matCellDef="let element">{{element.prenom}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="etat_civil">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>EtatCivil</th>
+      <td  mat-cell *matCellDef="let element"> {{element.etat_civil}}</td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="type_paie">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type Payement</th>
+      <td mat-cell *matCellDef="let element"> {{element.type_paie}}</td>
+    </ng-container>
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="mode_paie">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mode Payement</th>
+      <td mat-cell *matCellDef="let element"> {{element.mode_paie}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nom_banque">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Banque</th>
+      <td  mat-cell *matCellDef="let element"> {{element.nom_banque}} </td>
+    </ng-container>
+    <ng-container matColumnDef="num_compte">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Numero Compte</th>
+      <td  mat-cell *matCellDef="let element"> {{element.num_compte}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu" yposition="above">
+          <mat-icon class="mat-18">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editEmployer(element)">
+            <mat-icon mat-fab color="primary">edit</mat-icon>Voir detail
           </button>
-          <!-- <button type="button" mat-stroked-button color="#297F87" style="margin-left: 100px;" (click)="brouillon()">
-            Brouillon
+          <button mat-menu-item >
+            <mat-icon mat-fab color="primary">print</mat-icon>Imprimer Bulletin
+          </button>
+          <button mat-menu-item (click)="deleteEmployer(element.id)">
+            <mat-icon mat-fab color="warn">delete</mat-icon> Supprimer Fiche
+          </button>
+          <!-- <button mat-menu-item (click)="openDialogEpouse(element)">
+            <mat-icon mat-fab color="primary">add</mat-icon> Ajouter epoux(se)
+          </button>
+          <button mat-menu-item (click)="openDialogEnfant(element)">
+            <mat-icon mat-fab color="primary">add</mat-icon> Ajouter ses Enfants
+          </button>
+          <button mat-menu-item (click)="openDialogContrat(element)">
+            <mat-icon mat-fab color="primary">add</mat-icon> Ajouter Contrat
+          </button>
+           <button mat-menu-item (click)="voireFichePaie(element.matricule)">
+            <mat-icon mat-fab color="primary">visibility</mat-icon>Voir Fiche Paie
           </button> -->
-        </div>
-      </mat-step>
-      <mat-step label="Etape 2">
-        <h2>Payement</h2>
-        <div class="row">
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>modePaie_id</mat-label>
-            <input matInput placeholder=" modePaie" formControlName="modePaie_id">
-          </mat-form-field>
-          <!-- <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Date Proforma</mat-label>
-            <input matInput placeholder="Date Proforma" formControlName="dateProforma" [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field> -->
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>service</mat-label> -->
-   <input matInput placeholder="Service" formControlName="service">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>banque</mat-label>
-            <input matInput placeholder="banque" formControlName="banque">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Agence</mat-label>
-            <input matInput placeholder="agence" formControlName="agence_id">
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="col-4">
-            <mat-label>Compte</mat-label>
-            <input matInput placeholder="Compte" formControlName="numCompte">
-          </mat-form-field>
-        </div>
-          <!-- <button type="button" mat-stroked-button color="warn" (click)="closeDialog()">Fermer</button> -->
-          <button type="button" matStepperPrevious mat-stroked-button color="primary" style="margin-left: 100px;">
-            Précédent
-          </button>
-          <button matStepperNext mat-raised-button color="primary" type="submit"
-                  style="background-color: #297F87; margin-left: 100px;">
-            Soumettre la demande
-          </button>
-      </mat-step>
-    </mat-stepper>
-  </form>
+        </mat-menu>
+        
+        <!-- <button mat-icon-button (click)="editEmployer(row)" color="primary"> 
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn"> 
+          <mat-icon>delete</mat-icon>
+        </button> -->
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayedColumns; "></tr>
+  </table>
+  <mat-paginator style=" background-color: #cdc2e0;" [length]="200" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
 
+<!-- <div class="container">
+  <router-outlet>
+    <br><br>
+    <app-list-famille></app-list-famille>
+    
+  </router-outlet>
+
+</div> -->

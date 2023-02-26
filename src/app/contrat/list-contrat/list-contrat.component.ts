@@ -17,8 +17,7 @@ export class ListContratComponent implements OnInit {
 
  Contrat!: Contrat[];
   addCorpsForm!: FormGroup;
-  displayedColumns =['employe_id','corp_id','echelon_id','hierarchie_id','statut_id','classe_id','typeContrat_id',
-  'embouche','dateFin','action'];
+  displayedColumns =['employe_id','corp_id','echelon_id','hierarchie_id','statut_id','classe_id','typeContrat_id','action'];
  dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

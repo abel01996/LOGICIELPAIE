@@ -4,7 +4,7 @@
   
   table {
     width: 100%;
-    background-color: #cdc2e0;
+    background-color: #cdc2e0; 
   }
   td, th {
     width: 25%;
@@ -48,16 +48,12 @@
       width: 330px;
     }
   }
-  .mat-card {
-    width: 35%;
-    height:105px;
-    margin-top: 60px;
-  }
+  
   mat-card {
     height: 110px;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #cdc2e0;
+    background-color: #cdc2e0; 
   }
   
   
