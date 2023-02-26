@@ -6,33 +6,35 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "compte")
+@Table(name = "salaire")
 public class Salaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    private String numCompte;
-//    private String salaireBase;
+    private String code;
+    private String rubrique;
+    private String nbre;
+    private String unite;
+    private String indice;
+    private String vpi;
+    private String base;
+    private String taux;//
+    private String gain;
+    private String retenue;
+    @Temporal(TemporalType.DATE)
+    private Date periode;
+
     private  boolean isDeleted = false;
 
-    // salaire element
-//    @ManyToOne
-//    @JoinColumn(name = "agence_id")
-//    private Agence agence;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "typepaie_id")
-//    private Typepaie typepaie;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "typePaieRef_id")
-//    private TypePaieRef typePaieRef;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "modePaie_id")
-//    private ModePaie modePaie;
+    @ManyToOne
+    @JoinColumn(name = "employe_id")
+    private Employe employe;
+
+
 }

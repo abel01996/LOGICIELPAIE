@@ -44,8 +44,6 @@ public class ContratServiceImpl  implements IContratService{
     public Contrat updateContrat(Long id, Contrat contrat) {
 
         Contrat updateContrat = getAllContratById(id);
-        updateContrat.setEmbouche(contrat.getEmbouche());
-        updateContrat.setDateFin(contrat.getDateFin());
         updateContrat.setNumCompte(contrat.getNumCompte());
         updateContrat.setSalaireBase(contrat.getSalaireBase());
         updateContrat.setNbrPartFical(contrat.getNbrPartFical());

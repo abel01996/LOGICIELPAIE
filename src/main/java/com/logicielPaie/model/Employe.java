@@ -32,6 +32,10 @@ public class Employe implements Serializable {
    private String nbrEpouse;
 //    private String nbrEnfant;
    private String totalEnfant;
+    @Temporal(TemporalType.DATE)
+    private Date embouche;
+    @Temporal(TemporalType.DATE)
+    private Date dateFin;
     private boolean isDeleted = false;
 
     @ManyToOne()

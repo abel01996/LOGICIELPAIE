@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 
@@ -21,6 +23,11 @@ public class DirectionServiceImpl implements IDirectionService{
     public Collection<Direction> getAllDirection() {
         return directionRepository.findAllByAndIsDeletedIsFalseOrderByIdDesc();
     }
+
+//    @Override
+//    public List<String> getEmployeByDirection() {
+//        return  directionRepository.findAllEmployeByDirection();
+//    }
 
     @Override
     public Direction updateDirection(Long id, Direction direction) {

@@ -27,16 +27,17 @@ public class SalaireServiceImpl implements ISalaireService {
     @Override
     public Salaire updateSalaire(Long id, Salaire salaire) {
         Salaire updateSalaire = getAllCompteById(id);
-//        updateSalaire.setNumCompte(salaire.getNumCompte());
-//        updateSalaire.setSalaireBase(salaire.getSalaireBase());
-//        Agence agence = agenceRepository.findById(salaire.getAgence().getId()).get();
-//        updateSalaire.setAgence(agence);
-//        Typepaie typepaie = typePaieRepository.findById(salaire.getTypepaie().getId()).get();
-//        updateSalaire.setTypepaie(typepaie);
-//        TypePaieRef typePaieRef = typePaieRefRepository.findById(salaire.getTypePaieRef().getId()).get();
-//        updateSalaire.setTypePaieRef(typePaieRef);
-//        ModePaie modePaie = modePaieRespository.findById(salaire.getModePaie().getId()).get();
-//        updateSalaire.setModePaie(modePaie);
+        updateSalaire.setCode(salaire.getCode());
+        updateSalaire.setRubrique(salaire.getRubrique());
+        updateSalaire.setNbre(salaire.getNbre());
+        updateSalaire.setGain(salaire.getGain());
+        updateSalaire.setUnite(salaire.getUnite());
+        updateSalaire.setIndice(salaire.getIndice());
+        updateSalaire.setVpi(salaire.getVpi());
+        updateSalaire.setBase(salaire.getBase());
+        updateSalaire.setTaux(salaire.getTaux());
+        updateSalaire.setRetenue(salaire.getRetenue());
+        updateSalaire.setPeriode(salaire.getPeriode());
         return salaireRepository.save(updateSalaire);
     }
 

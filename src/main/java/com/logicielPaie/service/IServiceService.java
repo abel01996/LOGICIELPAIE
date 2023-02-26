@@ -15,4 +15,5 @@ public interface IServiceService {
     Service updateService(Long id, Service service);
 
     void deleteService(Long id);
+
 }

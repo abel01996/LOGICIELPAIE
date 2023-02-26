@@ -20,10 +20,6 @@ public class Contrat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(TemporalType.DATE)
-    private Date embouche;
-    @Temporal(TemporalType.DATE)
-    private Date dateFin;
     private String numCompte;
     private String salaireBase;
     private String nbrPartFical;

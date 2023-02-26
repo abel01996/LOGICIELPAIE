@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EmployeServiceImpl implements IEmployeService{
@@ -42,6 +44,8 @@ public class EmployeServiceImpl implements IEmployeService{
        updateEmployer.setTotalEnfant(employer.getTotalEnfant());
         EtatCivil etatCivil = etatCivilRepository.findById(employer.getEtatCivil().getId()).get();
         updateEmployer.setEtatCivil(etatCivil);
+        updateEmployer.setEmbouche(employer.getEmbouche());
+        updateEmployer.setDateFin(employer.getDateFin());
 
         return employeRepository.save(updateEmployer);
     }
@@ -51,6 +55,9 @@ public class EmployeServiceImpl implements IEmployeService{
         Employe deleteEmployer = getEmployerById(id);
         deleteEmployer.setDeleted(true);
         employeRepository.save(deleteEmployer);
+    }
+    public List<String>getMatricule(){
+        return employeRepository.findAllByMatricule();
     }
     private Employe getEmployerById(Long id){
 

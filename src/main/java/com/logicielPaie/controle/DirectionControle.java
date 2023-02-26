@@ -52,4 +52,8 @@ public class DirectionControle {
         return ResponseEntity.ok(directionRepository.findAll());
     }
 
+//    @GetMapping("/listEmploye")
+//    public  List<String>ListEmploye(){
+//        return directionService.getEmployeByDirection();
+//    }
 }

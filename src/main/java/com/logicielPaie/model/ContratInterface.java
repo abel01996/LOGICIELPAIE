@@ -1,5 +1,7 @@
 package com.logicielPaie.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 public interface ContratInterface {

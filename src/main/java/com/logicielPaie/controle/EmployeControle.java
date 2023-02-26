@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/logicielPaie/v1")
@@ -44,6 +45,9 @@ public class EmployeControle {
         employeService.deleteEmployer(id);
         return ResponseEntity.noContent().build();
     }
-
+        @GetMapping("/listMatricule")
+         public  List<String>getMatricule(){
+           return employeService.getMatricule();
+        }
 
 }
